@@ -1,0 +1,72 @@
+classDiagram
+direction TB
+    class Gestore {
+	    +giocaPartita()
+    }
+
+    class Giocatore {
+	    - nome: String
+    }
+
+    class Chimchar {
+	    +usaAbilità()
+    }
+
+    class Froakie {
+	    +usaAbilità()
+    }
+
+    class Rowlet {
+	    +usaAbilità()
+    }
+
+    class Evento {
+	    TROVA_OGGETTO
+	    TEAM_ROCKET
+	    POKEMON_SELVATICO
+    }
+
+    class GestoreEventi {
+	    -Random r
+	    +ApplicaEvento()
+	    +GeneraEventoCasuale()
+    }
+
+    class Inventario {
+	    -n_acqua: int
+	    -n_bacche: int
+	    -n_revitalizzanti: int
+	    -n_pozioni: int
+    }
+
+    class FileManager {
+	    +salvaPartita()
+	    +caricaPartita()
+	    +salvaPartitaCsv()
+	    +caricaPartitaCsv()
+    }
+
+    class Pokemon {
+	    -vivo: bool
+	    -sete: int
+	    -fame: int
+	    -vita: int
+	    -vitaMax: int
+	    +bevi()
+	    +mangia()
+	    +usaAbilità()
+	    +usaPozione()
+	    +usaRevitalizzante()
+    }
+
+	<<enum>> Evento
+
+    Pokemon <|-- Chimchar
+    Pokemon <|-- Froakie
+    Pokemon <|-- Rowlet
+    FileManager -- Gestore
+    Inventario -- Pokemon
+    Evento -- GestoreEventi
+    Gestore -- Giocatore
+    Gestore -- Pokemon
+    Gestore -- GestoreEventi
