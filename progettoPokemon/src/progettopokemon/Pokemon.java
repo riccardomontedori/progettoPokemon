@@ -45,4 +45,17 @@ public abstract class Pokemon {
         return fame;
     }
     
+    public int Cura(Inventario i){
+        if(i.usaPozione()){
+            this.vita = vita + 20;
+        }
+        return vita;
+    }
+    
+    public int Rinascita(Inventario i){
+        if(i.usaRevitalizzante() && PokemonMorto()){
+            this.vita = vitaMax / 2;
+        }
+        return vita;
+    }
 }

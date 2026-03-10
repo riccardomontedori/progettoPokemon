@@ -45,4 +45,12 @@ public class Inventario {
         }
         return false;
     }
+    
+    public boolean usaRevitalizzante(){
+        if(n_revitalizzanti > 0){
+            n_revitalizzanti--;
+            return true;
+        }
+        return false;
+    }
 }
