@@ -35,6 +35,9 @@ public abstract class Pokemon {
         if (i.usaAcqua()) {
             this.sete = sete - 10;          
         }
+        if (this.sete < 0) {
+        this.sete = 0;
+        }
         return sete;
     }
     
@@ -42,12 +45,18 @@ public abstract class Pokemon {
         if (i.usaBacca()) {
             this.fame = fame - 10;          
         }
+        if (this.fame < 0) {
+        this.fame = 0;
+        }
         return fame;
     }
     
     public int Cura(Inventario i){
         if(i.usaPozione()){
             this.vita = vita + 20;
+        }    
+        if(vita > vitaMax){
+            this.vita = vitaMax;
         }
         return vita;
     }
