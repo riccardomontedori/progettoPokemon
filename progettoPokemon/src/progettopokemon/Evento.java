@@ -8,6 +8,9 @@ package progettopokemon;
  *
  * @author montedori.riccardo
  */
-public class Evento {
-    
+    public enum Evento {
+    TROVA_OGGETTO,
+    TEAM_ROCKET,
+    POKEMON_SELVATICO
 }
+
