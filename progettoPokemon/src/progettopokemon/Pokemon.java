@@ -25,10 +25,24 @@ public abstract class Pokemon {
     }
     
     public boolean PokemonMorto(){
-        if(vita <= 0 && sete >= 50 && fame >= 50){
-            vivo = false;
+        if(vita <= 0 || sete >= 50 || fame >= 50){
+            this.vivo = false;
         }
-        return vivo;
+        return !this.vivo;
+    }
+    
+    public int Bevi(Inventario i){
+        if (i.usaAcqua()) {
+            this.sete = sete - 10;          
+        }
+        return sete;
+    }
+    
+    public int Mangia(Inventario i){
+        if (i.usaBacca()) {
+            this.fame = fame - 10;          
+        }
+        return fame;
     }
     
 }
