@@ -46,12 +46,20 @@ public class GestoreEvento {
                 }
                 break;
             case TEAM_ROCKET:
+            if (p instanceof Chimchar) {
+                p.setVita(p.getVita() - 10);
+            } else {
                 p.setVita(p.getVita() - 15);
-                break;
-
-            case POKEMON_SELVATICO:
+            }
+            break;
+            
+        case POKEMON_SELVATICO:
+            if (p instanceof Chimchar) {
                 p.setVita(p.getVita() - 5);
-                break;
+            } else {
+                p.setVita(p.getVita() - 10);
+            }
+            break;
         }
         p.PokemonMorto();
     }

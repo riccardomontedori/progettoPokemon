@@ -8,6 +8,19 @@ package progettopokemon;
  *
  * @author montedori.riccardo
  */
-public class Chimchar {
+public class Chimchar extends Pokemon{
     
+    public Chimchar() {
+        super(35);
+    }
+    
+    @Override
+    public void abilitaPassiva() {
+        
+    }
+    
+    @Override
+    public int usaAbilita() {
+        return 0;
+    }
 }
