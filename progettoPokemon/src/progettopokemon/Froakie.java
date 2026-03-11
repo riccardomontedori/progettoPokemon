@@ -8,6 +8,19 @@ package progettopokemon;
  *
  * @author montedori.riccardo
  */
-public class Froakie {
+public class Froakie extends Pokemon{
     
+    public Froakie() {
+        super(35);
+    }
+
+    @Override
+    public void abilitaPassiva() {
+        setSete(getSete() + 5);
+    }
+    
+    @Override
+    public int usaAbilita() {
+        return 0;
+    }
 }
