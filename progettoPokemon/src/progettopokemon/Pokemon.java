@@ -103,4 +103,15 @@ public abstract class Pokemon {
     public void setVivo(boolean vivo) {
         this.vivo = vivo;
     }
+    
+    public abstract int usaAbilita();
+    
+    public abstract void abilitaPassiva();
+    
+    public void subisciTurno() {
+        this.fame += 5;
+        this.sete += 5;
+        this.abilitaPassiva();
+        this.PokemonMorto();
+    }
 }
