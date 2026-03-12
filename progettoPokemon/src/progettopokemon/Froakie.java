@@ -21,6 +21,9 @@ public class Froakie extends Pokemon{
     
     @Override
     public int usaAbilita() {
-        return 0;
-    }
+    int totalePrecedente = getSete() + getFame();
+    setSete(0);
+    setFame(0);
+    return totalePrecedente; 
+}
 }

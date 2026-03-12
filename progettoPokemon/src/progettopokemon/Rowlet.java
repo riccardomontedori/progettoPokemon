@@ -9,18 +9,22 @@ package progettopokemon;
  * @author montedori.riccardo
  */
 public class Rowlet extends Pokemon {
-    
-    public Rowlet(){
+
+    public Rowlet() {
         super(35);
     }
-    
+
     @Override
     public void abilitaPassiva() {
-        
+
     }
-    
+
     @Override
     public int usaAbilita() {
-        return 0;
+        setVita(getVita() + 15);
+        if (getVita() > getVitaMax()) {
+            setVita(getVitaMax());
+        }
+        return getVita();
     }
 }
