@@ -8,6 +8,19 @@ package progettopokemon;
  *
  * @author montedori.riccardo
  */
-public class Rwolet {
+public class Rowlet extends Pokemon {
     
+    public Rowlet(){
+        super(35);
+    }
+    
+    @Override
+    public void abilitaPassiva() {
+        
+    }
+    
+    @Override
+    public int usaAbilita() {
+        return 0;
+    }
 }

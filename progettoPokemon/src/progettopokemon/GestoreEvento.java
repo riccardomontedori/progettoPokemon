@@ -24,9 +24,26 @@ public class GestoreEvento {
         }
     }
 
-    public Evento GeneraEventoCasuale() {
-        int indice = r.nextInt(eventi.size());
-        return eventi.get(indice);
+    public Evento GeneraEventoCasuale(Pokemon p) {
+        int probabilita = r.nextInt(100);
+
+        if (p instanceof Rowlet) {
+            if (probabilita < 50) {
+                return Evento.TROVA_OGGETTO;
+            } else if (probabilita < 75) {
+                return Evento.TEAM_ROCKET;
+            } else {
+                return Evento.POKEMON_SELVATICO;
+            }
+        } else {
+            if (probabilita < 33) {
+                return Evento.TROVA_OGGETTO;
+            } else if (probabilita < 66) {
+                return Evento.TEAM_ROCKET;
+            } else {
+                return Evento.POKEMON_SELVATICO;
+            }
+        }
     }
 
     public void ApplicaEvento(Evento e, Pokemon p, Inventario i) {
@@ -46,20 +63,20 @@ public class GestoreEvento {
                 }
                 break;
             case TEAM_ROCKET:
-            if (p instanceof Chimchar) {
-                p.setVita(p.getVita() - 10);
-            } else {
-                p.setVita(p.getVita() - 15);
-            }
-            break;
-            
-        case POKEMON_SELVATICO:
-            if (p instanceof Chimchar) {
-                p.setVita(p.getVita() - 5);
-            } else {
-                p.setVita(p.getVita() - 10);
-            }
-            break;
+                if (p instanceof Chimchar) {
+                    p.setVita(p.getVita() - 10);
+                } else {
+                    p.setVita(p.getVita() - 15);
+                }
+                break;
+
+            case POKEMON_SELVATICO:
+                if (p instanceof Chimchar) {
+                    p.setVita(p.getVita() - 5);
+                } else {
+                    p.setVita(p.getVita() - 10);
+                }
+                break;
         }
         p.PokemonMorto();
     }

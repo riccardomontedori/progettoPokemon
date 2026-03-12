@@ -109,8 +109,8 @@ public abstract class Pokemon {
     public abstract void abilitaPassiva();
     
     public void subisciTurno() {
-        this.fame += 5;
-        this.sete += 5;
+        this.fame += 10;
+        this.sete += 10;
         this.abilitaPassiva();
         this.PokemonMorto();
     }
