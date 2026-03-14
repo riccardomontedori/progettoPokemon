@@ -9,18 +9,29 @@ package progettopokemon;
  * @author montedori.riccardo
  */
 public class Chimchar extends Pokemon{
-    
+    private int turniImmune = 0;
+
     public Chimchar() {
-        super(35);
+        super(100);
     }
-    
+
     @Override
     public void abilitaPassiva() {
-        
+        if (turniImmune > 0) {
+            setFame(getFame() - 5);
+            setSete(getSete() - 5);
+            turniImmune--;
+        }
     }
-    
+
     @Override
     public int usaAbilita() {
-        return 0;
+        turniImmune = 2;
+        return turniImmune;
+    }
+
+    public int getTurniImmune() {
+        return turniImmune;
     }
 }
+
