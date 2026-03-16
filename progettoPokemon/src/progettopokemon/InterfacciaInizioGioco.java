@@ -47,10 +47,10 @@ public class InterfacciaInizioGioco extends javax.swing.JFrame {
                     jLabel1.setIcon(new ImageIcon(imgRiscalata));
                     jLabel1.setBounds(0, 0, w, h);
 
-                    int btnW = (int) (w * 0.4);
-                    int btnH = (int) (h * 0.1);
+                    int btnW = (int) (w * 0.25);
+                    int btnH = (int) (h * 0.06);
                     int btnX = (w - btnW) / 2;
-                    int btnY = (int) (h * 0.81);
+                    int btnY = (int) (h * 0.83);
 
                     jButton1.setBounds(btnX, btnY, btnW, btnH);
                 }
