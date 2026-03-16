@@ -9,6 +9,7 @@ package progettopokemon;
  * @author montedori.riccardo
  */
 public class Gestore {
+
     private Pokemon p;
     private Inventario i;
     private GestoreEvento ge;
@@ -24,11 +25,9 @@ public class Gestore {
     public void prossimoTurno() {
         turni++;
         p.subisciTurno();
-        
         if (p instanceof Chimchar && ((Chimchar) p).getTurniImmune() > 0) {
             return;
         }
-
         Evento evento = ge.GeneraEventoCasuale(p);
         ge.ApplicaEvento(evento, p, i);
     }
@@ -44,15 +43,27 @@ public class Gestore {
         }
     }
 
-    public void azioniBase(int scelta) {
-        switch (scelta) {
-            case 1: p.Mangia(i); break;
-            case 2: p.Bevi(i); break;
-            case 3: p.Cura(i); break;
-        }
+    public void eseguiMangia() {
+        p.Mangia(i);
     }
 
-    public Pokemon getPokemon() { return p; }
-    public Inventario getInventario() { return i; }
-    public int getTurni() { return turni; }
+    public void eseguiBevi() {
+        p.Bevi(i);
+    }
+
+    public void eseguiCura() {
+        p.Cura(i);
+    }
+
+    public Pokemon getPokemon() {
+        return p;
+    }
+
+    public Inventario getInventario() {
+        return i;
+    }
+
+    public int getTurni() {
+        return turni;
+    }
 }
