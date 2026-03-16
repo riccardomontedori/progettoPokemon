@@ -21,43 +21,12 @@ public class InterfacciaSceltaPokemon extends javax.swing.JFrame {
     /**
      * Creates new form InterfacciaSceltaPokemon
      */
-    private Image imgOriginale = new ImageIcon("immagine_scelta_pokemon.png").getImage();
-    private Image imgFroakie = new ImageIcon("immagine_froakie.png").getImage();
-    private Image imgRowlet = new ImageIcon("immagine_rowlet.png").getImage();
-    private Image imgChimchar = new ImageIcon("immagine_chimchar.png").getImage();
-
+private Image imgOriginale = new ImageIcon("immagine_scelta_pokemon.png").getImage();
+private Image imgFroakie = new ImageIcon("immagine_froakie.png").getImage();
+private Image imgRowlet = new ImageIcon("immagine_rowlet.png").getImage();
+private Image imgChimchar = new ImageIcon("immagine_chimchar.png").getImage();
     public InterfacciaSceltaPokemon() {
         initComponents();
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        this.getContentPane().setLayout(null);
-
-        this.addComponentListener(new java.awt.event.ComponentAdapter() {
-            @Override
-public void componentResized(java.awt.event.ComponentEvent e) {
-        int w = getContentPane().getWidth();
-        int h = getContentPane().getHeight();
-
-        if (w > 0 && h > 0) {
-            jLabel1.setIcon(new ImageIcon(imgOriginale.getScaledInstance(w, h, Image.SCALE_SMOOTH)));
-            jLabel1.setBounds(0, 0, w, h);
-
-            int pkmnDimW = (int)(w * 0.14); 
-            int pkmnDimH = (int)(h * 0.22); 
-
-            jLabel2.setIcon(new ImageIcon(imgFroakie.getScaledInstance(pkmnDimW, pkmnDimH, Image.SCALE_SMOOTH)));
-            jLabel2.setBounds((int)(w * 0.19), (int)(h * 0.58), pkmnDimW, pkmnDimH);
-
-            jLabel3.setIcon(new ImageIcon(imgRowlet.getScaledInstance(pkmnDimW, pkmnDimH, Image.SCALE_SMOOTH)));
-            jLabel3.setBounds((int)(w * 0.43), (int)(h * 0.58), pkmnDimW, pkmnDimH);
-
-            jLabel4.setIcon(new ImageIcon(imgChimchar.getScaledInstance(pkmnDimW, pkmnDimH, Image.SCALE_SMOOTH)));
-            jLabel4.setBounds((int)(w * 0.67), (int)(h * 0.58), pkmnDimW, pkmnDimH);
-
-            getContentPane().setComponentZOrder(jLabel1, getContentPane().getComponentCount() - 1);
-            getContentPane().repaint();
-        }
-    }
-        });
     }
 
     /**
@@ -70,28 +39,24 @@ public void componentResized(java.awt.event.ComponentEvent e) {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(120, 110, 70, 16);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 70, -1));
 
-        jLabel2.setText("jLabel2");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(130, 200, 50, 16);
+        jButton2.setText("jButton2");
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, -1, -1));
 
-        jLabel3.setText("jLabel3");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(200, 210, 38, 16);
+        jButton3.setText("jButton3");
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 190, -1, -1));
 
-        jLabel4.setText("jLabel4");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(290, 180, 38, 16);
+        jButton4.setText("jButton4");
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 190, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -122,9 +87,9 @@ public void componentResized(java.awt.event.ComponentEvent e) {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
 }
