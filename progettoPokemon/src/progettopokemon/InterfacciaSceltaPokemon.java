@@ -8,15 +8,56 @@ package progettopokemon;
  *
  * @author montedori.riccardo
  */
+import java.awt.Image;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+
 public class InterfacciaSceltaPokemon extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(InterfacciaSceltaPokemon.class.getName());
 
     /**
      * Creates new form InterfacciaSceltaPokemon
      */
+    private Image imgOriginale = new ImageIcon("immagine_scelta_pokemon.png").getImage();
+    private Image imgFroakie = new ImageIcon("immagine_froakie.png").getImage();
+    private Image imgRowlet = new ImageIcon("immagine_rowlet.png").getImage();
+    private Image imgChimchar = new ImageIcon("immagine_chimchar.png").getImage();
+
     public InterfacciaSceltaPokemon() {
         initComponents();
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.getContentPane().setLayout(null);
+
+        this.addComponentListener(new java.awt.event.ComponentAdapter() {
+            @Override
+public void componentResized(java.awt.event.ComponentEvent e) {
+        int w = getContentPane().getWidth();
+        int h = getContentPane().getHeight();
+
+        if (w > 0 && h > 0) {
+            jLabel1.setIcon(new ImageIcon(imgOriginale.getScaledInstance(w, h, Image.SCALE_SMOOTH)));
+            jLabel1.setBounds(0, 0, w, h);
+
+            int pkmnDimW = (int)(w * 0.14); 
+            int pkmnDimH = (int)(h * 0.22); 
+
+            jLabel2.setIcon(new ImageIcon(imgFroakie.getScaledInstance(pkmnDimW, pkmnDimH, Image.SCALE_SMOOTH)));
+            jLabel2.setBounds((int)(w * 0.19), (int)(h * 0.58), pkmnDimW, pkmnDimH);
+
+            jLabel3.setIcon(new ImageIcon(imgRowlet.getScaledInstance(pkmnDimW, pkmnDimH, Image.SCALE_SMOOTH)));
+            jLabel3.setBounds((int)(w * 0.43), (int)(h * 0.58), pkmnDimW, pkmnDimH);
+
+            jLabel4.setIcon(new ImageIcon(imgChimchar.getScaledInstance(pkmnDimW, pkmnDimH, Image.SCALE_SMOOTH)));
+            jLabel4.setBounds((int)(w * 0.67), (int)(h * 0.58), pkmnDimW, pkmnDimH);
+
+            getContentPane().setComponentZOrder(jLabel1, getContentPane().getComponentCount() - 1);
+            getContentPane().repaint();
+        }
+    }
+        });
     }
 
     /**
@@ -28,18 +69,29 @@ public class InterfacciaSceltaPokemon extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
+
+        jLabel1.setText("jLabel1");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(120, 110, 70, 16);
+
+        jLabel2.setText("jLabel2");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(130, 200, 50, 16);
+
+        jLabel3.setText("jLabel3");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(200, 210, 38, 16);
+
+        jLabel4.setText("jLabel4");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(290, 180, 38, 16);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -70,5 +122,9 @@ public class InterfacciaSceltaPokemon extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
 }
