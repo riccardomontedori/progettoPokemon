@@ -4,12 +4,15 @@
  */
 package progettopokemon;
 
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author montedori.riccardo
  */
 public class InterfacciaInizioGioco extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(InterfacciaInizioGioco.class.getName());
 
     /**
@@ -17,6 +20,42 @@ public class InterfacciaInizioGioco extends javax.swing.JFrame {
      */
     public InterfacciaInizioGioco() {
         initComponents();
+        jButton1.setOpaque(false);
+        jButton1.setContentAreaFilled(false);
+        jButton1.setBorderPainted(false);
+        jButton1.setFocusPainted(false);
+
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InterfacciaSceltaPokemon prossimaFinestra = new InterfacciaSceltaPokemon();
+                prossimaFinestra.setVisible(true);
+                prossimaFinestra.setLocationRelativeTo(null);
+                dispose();
+            }
+        });
+
+        this.addComponentListener(new java.awt.event.ComponentAdapter() {
+            @Override
+            public void componentResized(java.awt.event.ComponentEvent e) {
+                int w = getContentPane().getWidth();
+                int h = getContentPane().getHeight();
+
+                if (w > 0 && h > 0) {
+                    Image img1 = new ImageIcon("immagine_inizio_gioco.png").getImage();
+                    Image imgRiscalata = img1.getScaledInstance(w, h, Image.SCALE_SMOOTH);
+                    jLabel1.setIcon(new ImageIcon(imgRiscalata));
+                    jLabel1.setBounds(0, 0, w, h);
+
+                    int btnW = (int) (w * 0.4);
+                    int btnH = (int) (h * 0.1);
+                    int btnX = (w - btnW) / 2;
+                    int btnY = (int) (h * 0.81);
+
+                    jButton1.setBounds(btnX, btnY, btnW, btnH);
+                }
+            }
+        });
     }
 
     /**
@@ -29,28 +68,16 @@ public class InterfacciaInizioGioco extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 0, 420, 290);
 
-        jLabel1.setFont(new java.awt.Font("Showcard Gothic", 0, 24)); // NOI18N
-        jLabel1.setText("Pokemon Leggende Cerbi");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(136, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(134, 134, 134))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(jLabel1)
-                .addContainerGap(355, Short.MAX_VALUE))
-        );
+        jButton1.setText("jButton1");
+        getContentPane().add(jButton1);
+        jButton1.setBounds(260, 360, 75, 23);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -81,6 +108,7 @@ public class InterfacciaInizioGioco extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
