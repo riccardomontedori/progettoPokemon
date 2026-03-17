@@ -27,8 +27,52 @@ private Image imgRowlet = new ImageIcon("immagine_rowlet.png").getImage();
 private Image imgChimchar = new ImageIcon("immagine_chimchar.png").getImage();
     public InterfacciaSceltaPokemon() {
         initComponents();
+        // --- INIZIO CODICE DA AGGIUNGERE ---
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+
+        // Rendiamo i bottoni trasparenti (si vedrà solo il Pokemon)
+        jButton2.setContentAreaFilled(false); jButton2.setBorderPainted(false);
+        jButton3.setContentAreaFilled(false); jButton3.setBorderPainted(false);
+        jButton4.setContentAreaFilled(false); jButton4.setBorderPainted(false);
+
+        this.addComponentListener(new java.awt.event.ComponentAdapter() {
+            @Override
+            public void componentResized(java.awt.event.ComponentEvent e) {
+                int w = getContentPane().getWidth();
+                int h = getContentPane().getHeight();
+
+                if (w > 0 && h > 0) {
+                    // Sfondo
+                    jLabel1.setBounds(0, 0, w, h);
+                    jLabel1.setIcon(new ImageIcon(imgOriginale.getScaledInstance(w, h, Image.SCALE_SMOOTH)));
+
+                    // Posizionamento Pokemon (Regola questi valori 0.35, 0.46 ecc. per centrarli)
+                    int btnW = w / 8;  
+                    int btnH = h / 4;
+                    int yPos = (int)(h * 0.32); // Altezza dei riquadri
+
+                    jButton2.setBounds((int)(w * 0.31), yPos, btnW, btnH); // Rosso
+                    aggiornaIconaBottone(jButton2, imgChimchar);
+
+                    jButton3.setBounds((int)(w * 0.44), yPos, btnW, btnH); // Verde
+                    aggiornaIconaBottone(jButton3, imgRowlet);
+
+                    jButton4.setBounds((int)(w * 0.57), yPos, btnW, btnH); // Blu
+                    aggiornaIconaBottone(jButton4, imgFroakie);
+                    
+                    // Fondamentale: mette lo sfondo dietro tutto
+                    getContentPane().setComponentZOrder(jLabel1, getContentPane().getComponentCount() - 1);
+                }
+            }
+        });
         
-        
+    }
+    
+    private void aggiornaIconaBottone(javax.swing.JButton btn, Image img) {
+        if (btn.getWidth() > 0 && btn.getHeight() > 0) {
+            Image scaled = img.getScaledInstance(btn.getWidth(), btn.getHeight(), Image.SCALE_SMOOTH);
+            btn.setIcon(new ImageIcon(scaled));
+        }
     }
 
     /**
@@ -46,19 +90,23 @@ private Image imgChimchar = new ImageIcon("immagine_chimchar.png").getImage();
         jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().setLayout(null);
 
         jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 70, -1));
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 0, 400, 300);
 
         jButton2.setText("jButton2");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, -1, -1));
+        getContentPane().add(jButton2);
+        jButton2.setBounds(50, 190, 75, 23);
 
         jButton3.setText("jButton3");
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 190, -1, -1));
+        getContentPane().add(jButton3);
+        jButton3.setBounds(160, 190, 75, 23);
 
         jButton4.setText("jButton4");
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 190, -1, -1));
+        getContentPane().add(jButton4);
+        jButton4.setBounds(260, 190, 75, 23);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
