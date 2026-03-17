@@ -27,6 +27,8 @@ private Image imgRowlet = new ImageIcon("immagine_rowlet.png").getImage();
 private Image imgChimchar = new ImageIcon("immagine_chimchar.png").getImage();
     public InterfacciaSceltaPokemon() {
         initComponents();
+        
+        
     }
 
     /**
