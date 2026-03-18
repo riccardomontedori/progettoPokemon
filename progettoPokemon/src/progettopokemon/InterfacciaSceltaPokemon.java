@@ -13,6 +13,7 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class InterfacciaSceltaPokemon extends javax.swing.JFrame {
 
@@ -30,7 +31,6 @@ public class InterfacciaSceltaPokemon extends javax.swing.JFrame {
         initComponents();
 
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-
 
         jButton2.setContentAreaFilled(false);
         jButton2.setBorderPainted(false);
@@ -52,14 +52,11 @@ public class InterfacciaSceltaPokemon extends javax.swing.JFrame {
                     int btnW = w / 12;
                     int btnH = h / 6;
 
-
                     jButton2.setBounds((int) (w * 0.335), (int) (h * 0.30), btnW, btnH);
                     aggiornaIconaBottone(jButton2, imgChimchar);
 
-
                     jButton3.setBounds((int) (w * 0.46), (int) (h * 0.30), btnW, btnH);
                     aggiornaIconaBottone(jButton3, imgRowlet);
-
 
                     jButton4.setBounds((int) (w * 0.585), (int) (h * 0.30), btnW, btnH);
                     aggiornaIconaBottone(jButton4, imgFroakie);
@@ -96,17 +93,26 @@ public class InterfacciaSceltaPokemon extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 400, 300);
+        jLabel1.setBounds(0, 0, 70, 40);
 
         jButton2.setText("jButton2");
         getContentPane().add(jButton2);
@@ -120,8 +126,50 @@ public class InterfacciaSceltaPokemon extends javax.swing.JFrame {
         getContentPane().add(jButton4);
         jButton4.setBounds(260, 190, 75, 23);
 
+        jButton1.setText("Informazioni");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(50, 120, 110, 23);
+
+        jButton5.setText("Informazioni");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton5);
+        jButton5.setBounds(150, 130, 97, 23);
+
+        jButton6.setText("Informazioni");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton6);
+        jButton6.setBounds(270, 250, 97, 23);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this, "Pokémon di tipo Erba/Volante. Silenzioso e attento, attacca senza fare rumore grazie alle sue ali morbide. Di giorno usa la fotosintesi per accumulare energia.", "Pokedex", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this, "Pokémon di tipo Fuoco. Vivace e agile, ha una fiamma sempre accesa sulla coda che indica il suo stato emotivo. Più è forte, più la fiamma arde intensamente.", "Pokedex", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this, "Pokémon di tipo Acqua. Produce bolle protettive intorno al collo e alla schiena che ammortizzano gli attacchi. È rapido e ama saltare con grande agilità.", "Pokedex", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -149,9 +197,14 @@ public class InterfacciaSceltaPokemon extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }
