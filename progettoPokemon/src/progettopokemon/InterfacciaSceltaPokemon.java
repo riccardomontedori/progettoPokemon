@@ -21,19 +21,23 @@ public class InterfacciaSceltaPokemon extends javax.swing.JFrame {
     /**
      * Creates new form InterfacciaSceltaPokemon
      */
-private Image imgOriginale = new ImageIcon("immagine_scelta_pokemon.png").getImage();
-private Image imgFroakie = new ImageIcon("immagine_froakie.png").getImage();
-private Image imgRowlet = new ImageIcon("immagine_rowlet.png").getImage();
-private Image imgChimchar = new ImageIcon("immagine_chimchar.png").getImage();
+    private Image imgOriginale = new ImageIcon("immagine_scelta_pokemon.png").getImage();
+    private Image imgFroakie = new ImageIcon("immagine_froakie.png").getImage();
+    private Image imgRowlet = new ImageIcon("immagine_rowlet.png").getImage();
+    private Image imgChimchar = new ImageIcon("immagine_chimchar.png").getImage();
+
     public InterfacciaSceltaPokemon() {
         initComponents();
-        // --- INIZIO CODICE DA AGGIUNGERE ---
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 
-        // Rendiamo i bottoni trasparenti (si vedrà solo il Pokemon)
-        jButton2.setContentAreaFilled(false); jButton2.setBorderPainted(false);
-        jButton3.setContentAreaFilled(false); jButton3.setBorderPainted(false);
-        jButton4.setContentAreaFilled(false); jButton4.setBorderPainted(false);
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+
+        jButton2.setContentAreaFilled(false);
+        jButton2.setBorderPainted(false);
+        jButton3.setContentAreaFilled(false);
+        jButton3.setBorderPainted(false);
+        jButton4.setContentAreaFilled(false);
+        jButton4.setBorderPainted(false);
 
         this.addComponentListener(new java.awt.event.ComponentAdapter() {
             @Override
@@ -42,37 +46,45 @@ private Image imgChimchar = new ImageIcon("immagine_chimchar.png").getImage();
                 int h = getContentPane().getHeight();
 
                 if (w > 0 && h > 0) {
-                    // Sfondo
                     jLabel1.setBounds(0, 0, w, h);
                     jLabel1.setIcon(new ImageIcon(imgOriginale.getScaledInstance(w, h, Image.SCALE_SMOOTH)));
 
-                    // Posizionamento Pokemon (Regola questi valori 0.35, 0.46 ecc. per centrarli)
-                    int btnW = w / 8;  
-                    int btnH = h / 4;
-                    int yPos = (int)(h * 0.32); // Altezza dei riquadri
+                    int btnW = w / 12;
+                    int btnH = h / 6;
 
-                    jButton2.setBounds((int)(w * 0.31), yPos, btnW, btnH); // Rosso
+
+                    jButton2.setBounds((int) (w * 0.335), (int) (h * 0.30), btnW, btnH);
                     aggiornaIconaBottone(jButton2, imgChimchar);
 
-                    jButton3.setBounds((int)(w * 0.44), yPos, btnW, btnH); // Verde
+
+                    jButton3.setBounds((int) (w * 0.46), (int) (h * 0.30), btnW, btnH);
                     aggiornaIconaBottone(jButton3, imgRowlet);
 
-                    jButton4.setBounds((int)(w * 0.57), yPos, btnW, btnH); // Blu
+
+                    jButton4.setBounds((int) (w * 0.585), (int) (h * 0.30), btnW, btnH);
                     aggiornaIconaBottone(jButton4, imgFroakie);
-                    
-                    // Fondamentale: mette lo sfondo dietro tutto
+
                     getContentPane().setComponentZOrder(jLabel1, getContentPane().getComponentCount() - 1);
                 }
             }
         });
-        
+        jButton2.addActionListener(e -> apriNuovaInterfaccia("Chimchar"));
+        jButton3.addActionListener(e -> apriNuovaInterfaccia("Rowlet"));
+        jButton4.addActionListener(e -> apriNuovaInterfaccia("Froakie"));
+
     }
-    
+
     private void aggiornaIconaBottone(javax.swing.JButton btn, Image img) {
         if (btn.getWidth() > 0 && btn.getHeight() > 0) {
             Image scaled = img.getScaledInstance(btn.getWidth(), btn.getHeight(), Image.SCALE_SMOOTH);
             btn.setIcon(new ImageIcon(scaled));
         }
+    }
+
+    private void apriNuovaInterfaccia(String pokemonScelto) {
+        InterfacciaSvolgimentoGioco nuovaSchermata = new InterfacciaSvolgimentoGioco();
+        nuovaSchermata.setVisible(true);
+        this.dispose();
     }
 
     /**
