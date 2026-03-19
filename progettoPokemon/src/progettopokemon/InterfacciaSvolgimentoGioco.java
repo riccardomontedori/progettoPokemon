@@ -9,14 +9,17 @@ package progettopokemon;
  * @author montedori.riccardo
  */
 public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(InterfacciaSvolgimentoGioco.class.getName());
 
     /**
      * Creates new form InterfacciaSvolgimentoGioco
      */
-    public InterfacciaSvolgimentoGioco() {
+    private Gestore g;
+    public InterfacciaSvolgimentoGioco(Gestore g) {
+        this.g = g;
         initComponents();
+        this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
     }
 
     /**
@@ -28,40 +31,137 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnBevi = new javax.swing.JButton();
+        btnMangia = new javax.swing.JButton();
+        btnCura = new javax.swing.JButton();
+        btnRinasci = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        btnEsplora = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        btnInventario = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
 
-        jButton1.setText("Bevi");
+        btnBevi.setText("Bevi");
+        btnBevi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBeviActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnBevi);
+        btnBevi.setBounds(109, 213, 72, 23);
 
-        jButton2.setText("fame");
+        btnMangia.setText("Mangia");
+        btnMangia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMangiaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnMangia);
+        btnMangia.setBounds(199, 172, 72, 23);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(135, 135, 135)
-                .addComponent(jButton1)
-                .addContainerGap(193, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(65, 65, 65))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(152, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(38, 38, 38)
-                .addComponent(jButton1)
-                .addGap(64, 64, 64))
-        );
+        btnCura.setText("Cura");
+        btnCura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCuraActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnCura);
+        btnCura.setBounds(109, 172, 72, 23);
+
+        btnRinasci.setText("Rinasci");
+        btnRinasci.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRinasciActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnRinasci);
+        btnRinasci.setBounds(199, 213, 72, 23);
+
+        jLabel1.setText("Fame attuale:");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(270, 90, 80, 16);
+
+        jLabel2.setText("Sete attuale:");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(250, 30, 70, 16);
+
+        jLabel3.setText("0");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(360, 90, 40, 16);
+
+        jLabel4.setText("Vita attuale:");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(35, 66, 62, 16);
+
+        btnEsplora.setText("Esplora");
+        btnEsplora.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEsploraActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnEsplora);
+        btnEsplora.setBounds(109, 297, 72, 23);
+
+        jLabel5.setText("35");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(115, 66, 40, 16);
+
+        jLabel6.setText("0");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(320, 30, 50, 16);
+
+        btnInventario.setText("Apri Inventario");
+        btnInventario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInventarioActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnInventario);
+        btnInventario.setBounds(260, 290, 130, 23);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnMangiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMangiaActionPerformed
+        // TODO add your handling code here:
+        g.eseguiMangia();
+        jLabel3.setText("" + g.getPokemon().getFame());
+    }//GEN-LAST:event_btnMangiaActionPerformed
+
+    private void btnRinasciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRinasciActionPerformed
+        // TODO add your handling code here:
+        btnRinasci.setEnabled(false);
+        if(g.getPokemon().PokemonMorto()){
+            btnRinasci.setEnabled(true);
+        }
+    }//GEN-LAST:event_btnRinasciActionPerformed
+
+    private void btnBeviActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBeviActionPerformed
+        // TODO add your handling code here:
+        g.eseguiBevi();    
+        jLabel6.setText("" + g.getPokemon().getSete());
+    }//GEN-LAST:event_btnBeviActionPerformed
+
+    private void btnCuraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCuraActionPerformed
+        // TODO add your handling code here:
+        g.eseguiCura();
+        jLabel5.setText("" + g.getPokemon().getVita());
+    }//GEN-LAST:event_btnCuraActionPerformed
+
+    private void btnEsploraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEsploraActionPerformed
+        // TODO add your handling code here:
+        g.prossimoTurno();
+    }//GEN-LAST:event_btnEsploraActionPerformed
+
+    private void btnInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnInventarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -85,11 +185,21 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new InterfacciaSvolgimentoGioco().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new InterfacciaSvolgimentoGioco(null).setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnBevi;
+    private javax.swing.JButton btnCura;
+    private javax.swing.JButton btnEsplora;
+    private javax.swing.JButton btnInventario;
+    private javax.swing.JButton btnMangia;
+    private javax.swing.JButton btnRinasci;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     // End of variables declaration//GEN-END:variables
 }

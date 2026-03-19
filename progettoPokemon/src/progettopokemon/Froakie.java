@@ -11,7 +11,7 @@ package progettopokemon;
 public class Froakie extends Pokemon{
     
     public Froakie() {
-        super(35);
+
     }
 
     @Override

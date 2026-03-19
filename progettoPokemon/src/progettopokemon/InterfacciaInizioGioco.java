@@ -73,7 +73,7 @@ public class InterfacciaInizioGioco extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 420, 290);
+        jLabel1.setBounds(0, 0, 230, 90);
 
         jButton1.setText("jButton1");
         getContentPane().add(jButton1);

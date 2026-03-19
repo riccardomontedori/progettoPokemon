@@ -11,7 +11,7 @@ package progettopokemon;
 public class Rowlet extends Pokemon {
 
     public Rowlet() {
-        super(35);
+
     }
 
     @Override

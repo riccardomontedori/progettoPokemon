@@ -12,7 +12,7 @@ public class Chimchar extends Pokemon{
     private int turniImmune = 0;
 
     public Chimchar() {
-        super(100);
+        
     }
 
     @Override

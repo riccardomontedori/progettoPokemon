@@ -28,18 +28,41 @@ public class InterfacciaInventario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
+
+        jLabel1.setText("Numero Pozioni:");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(28, 35, 89, 16);
+
+        jLabel2.setText("Numero Bacche:");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(28, 79, 88, 16);
+
+        jLabel3.setText("Numero Acquee:");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(28, 125, 90, 16);
+
+        jLabel4.setText("Numero Revitalizzanti:");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(28, 170, 118, 16);
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(164, 35, 55, 16);
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(164, 79, 55, 16);
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(164, 125, 55, 16);
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(174, 170, 74, 16);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -70,5 +93,13 @@ public class InterfacciaInventario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     // End of variables declaration//GEN-END:variables
 }

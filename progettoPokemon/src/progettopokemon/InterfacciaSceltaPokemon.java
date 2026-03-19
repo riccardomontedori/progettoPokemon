@@ -42,47 +42,40 @@ public class InterfacciaSceltaPokemon extends javax.swing.JFrame {
         this.addComponentListener(new java.awt.event.ComponentAdapter() {
             @Override
             public void componentResized(java.awt.event.ComponentEvent e) {
-    int w = getContentPane().getWidth();
-    int h = getContentPane().getHeight();
+                int w = getContentPane().getWidth();
+                int h = getContentPane().getHeight();
 
-    if (w > 0 && h > 0) {
-        // 1. Sfondo
-        jLabel1.setBounds(0, 0, w, h);
-        jLabel1.setIcon(new ImageIcon(imgOriginale.getScaledInstance(w, h, Image.SCALE_SMOOTH)));
+                if (w > 0 && h > 0) {
+                    jLabel1.setBounds(0, 0, w, h);
+                    jLabel1.setIcon(new ImageIcon(imgOriginale.getScaledInstance(w, h, Image.SCALE_SMOOTH)));
 
-        int btnW = w / 12;
-        int btnH = h / 6;
-        int infoW = w / 10; 
-        int infoH = 30;
+                    int btnW = w / 12;
+                    int btnH = h / 6;
+                    int infoW = w / 10;
+                    int infoH = 30;
 
-        int yPokemon = (int) (h * 0.30);
-        int yInfo = yPokemon + btnH + 60; 
+                    int yPokemon = (int) (h * 0.30);
+                    int yInfo = yPokemon + btnH + 60;
 
-        // --- CHIMCHAR (Rosso) ---
-        // X tornata a 0.335 (originale)
-        int x1 = (int) (w * 0.335); 
-        jButton2.setBounds(x1, yPokemon, btnW, btnH);
-        aggiornaIconaBottone(jButton2, imgChimchar);
-        // Bottone Info: rimosso lo scarto di -10 per non farlo andare troppo a sinistra
-        jButton1.setBounds(x1, yInfo, infoW, infoH);
+                    int x1 = (int) (w * 0.335);
+                    jButton2.setBounds(x1, yPokemon, btnW, btnH);
+                    aggiornaIconaBottone(jButton2, imgChimchar);
 
-        // --- ROWLET (Verde) ---
-        int x2 = (int) (w * 0.46);
-        jButton3.setBounds(x2, yPokemon, btnW, btnH);
-        aggiornaIconaBottone(jButton3, imgRowlet);
-        jButton5.setBounds(x2, yInfo, infoW, infoH);
+                    jButton1.setBounds(x1, yInfo, infoW, infoH);
 
-        // --- FROAKIE (Blu) ---
-        // X tornata a 0.585 (originale)
-        int x3 = (int) (w * 0.585); 
-        jButton4.setBounds(x3, yPokemon, btnW, btnH);
-        aggiornaIconaBottone(jButton4, imgFroakie);
-        // Bottone Info: rimosso lo scarto di -10 per non farlo andare troppo a destra
-        jButton6.setBounds(x3, yInfo, infoW, infoH);
+                    int x2 = (int) (w * 0.46);
+                    jButton3.setBounds(x2, yPokemon, btnW, btnH);
+                    aggiornaIconaBottone(jButton3, imgRowlet);
+                    jButton5.setBounds(x2, yInfo, infoW, infoH);
 
-        getContentPane().setComponentZOrder(jLabel1, getContentPane().getComponentCount() - 1);
-    }
-}
+                    int x3 = (int) (w * 0.585);
+                    jButton4.setBounds(x3, yPokemon, btnW, btnH);
+                    aggiornaIconaBottone(jButton4, imgFroakie);
+                    jButton6.setBounds(x3, yInfo, infoW, infoH);
+
+                    getContentPane().setComponentZOrder(jLabel1, getContentPane().getComponentCount() - 1);
+                }
+            }
         });
 
         jButton2.addActionListener(e -> apriNuovaInterfaccia("Chimchar"));
@@ -99,7 +92,17 @@ public class InterfacciaSceltaPokemon extends javax.swing.JFrame {
     }
 
     private void apriNuovaInterfaccia(String pokemonScelto) {
-        InterfacciaSvolgimentoGioco nuovaSchermata = new InterfacciaSvolgimentoGioco();
+        Pokemon p;
+        if (pokemonScelto.equals("Chimchar")) {
+            p = new Chimchar();
+        } else if (pokemonScelto.equals("Rowlet")) {
+            p = new Rowlet();
+        } else {
+            p = new Froakie();
+        }
+
+        Gestore g = new Gestore(p);
+        InterfacciaSvolgimentoGioco nuovaSchermata = new InterfacciaSvolgimentoGioco(g);
         nuovaSchermata.setVisible(true);
         this.dispose();
     }
