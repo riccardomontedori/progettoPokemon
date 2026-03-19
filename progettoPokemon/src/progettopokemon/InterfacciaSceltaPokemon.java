@@ -42,29 +42,49 @@ public class InterfacciaSceltaPokemon extends javax.swing.JFrame {
         this.addComponentListener(new java.awt.event.ComponentAdapter() {
             @Override
             public void componentResized(java.awt.event.ComponentEvent e) {
-                int w = getContentPane().getWidth();
-                int h = getContentPane().getHeight();
+    int w = getContentPane().getWidth();
+    int h = getContentPane().getHeight();
 
-                if (w > 0 && h > 0) {
-                    jLabel1.setBounds(0, 0, w, h);
-                    jLabel1.setIcon(new ImageIcon(imgOriginale.getScaledInstance(w, h, Image.SCALE_SMOOTH)));
+    if (w > 0 && h > 0) {
+        // 1. Sfondo
+        jLabel1.setBounds(0, 0, w, h);
+        jLabel1.setIcon(new ImageIcon(imgOriginale.getScaledInstance(w, h, Image.SCALE_SMOOTH)));
 
-                    int btnW = w / 12;
-                    int btnH = h / 6;
+        int btnW = w / 12;
+        int btnH = h / 6;
+        int infoW = w / 10; 
+        int infoH = 30;
 
-                    jButton2.setBounds((int) (w * 0.335), (int) (h * 0.30), btnW, btnH);
-                    aggiornaIconaBottone(jButton2, imgChimchar);
+        int yPokemon = (int) (h * 0.30);
+        int yInfo = yPokemon + btnH + 60; 
 
-                    jButton3.setBounds((int) (w * 0.46), (int) (h * 0.30), btnW, btnH);
-                    aggiornaIconaBottone(jButton3, imgRowlet);
+        // --- CHIMCHAR (Rosso) ---
+        // X tornata a 0.335 (originale)
+        int x1 = (int) (w * 0.335); 
+        jButton2.setBounds(x1, yPokemon, btnW, btnH);
+        aggiornaIconaBottone(jButton2, imgChimchar);
+        // Bottone Info: rimosso lo scarto di -10 per non farlo andare troppo a sinistra
+        jButton1.setBounds(x1, yInfo, infoW, infoH);
 
-                    jButton4.setBounds((int) (w * 0.585), (int) (h * 0.30), btnW, btnH);
-                    aggiornaIconaBottone(jButton4, imgFroakie);
+        // --- ROWLET (Verde) ---
+        int x2 = (int) (w * 0.46);
+        jButton3.setBounds(x2, yPokemon, btnW, btnH);
+        aggiornaIconaBottone(jButton3, imgRowlet);
+        jButton5.setBounds(x2, yInfo, infoW, infoH);
 
-                    getContentPane().setComponentZOrder(jLabel1, getContentPane().getComponentCount() - 1);
-                }
-            }
+        // --- FROAKIE (Blu) ---
+        // X tornata a 0.585 (originale)
+        int x3 = (int) (w * 0.585); 
+        jButton4.setBounds(x3, yPokemon, btnW, btnH);
+        aggiornaIconaBottone(jButton4, imgFroakie);
+        // Bottone Info: rimosso lo scarto di -10 per non farlo andare troppo a destra
+        jButton6.setBounds(x3, yInfo, infoW, infoH);
+
+        getContentPane().setComponentZOrder(jLabel1, getContentPane().getComponentCount() - 1);
+    }
+}
         });
+
         jButton2.addActionListener(e -> apriNuovaInterfaccia("Chimchar"));
         jButton3.addActionListener(e -> apriNuovaInterfaccia("Rowlet"));
         jButton4.addActionListener(e -> apriNuovaInterfaccia("Froakie"));
@@ -126,6 +146,7 @@ public class InterfacciaSceltaPokemon extends javax.swing.JFrame {
         getContentPane().add(jButton4);
         jButton4.setBounds(260, 190, 75, 23);
 
+        jButton1.setFont(new java.awt.Font("Snap ITC", 2, 12)); // NOI18N
         jButton1.setText("Informazioni");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -133,8 +154,9 @@ public class InterfacciaSceltaPokemon extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(50, 120, 110, 23);
+        jButton1.setBounds(50, 120, 110, 24);
 
+        jButton5.setFont(new java.awt.Font("Snap ITC", 2, 12)); // NOI18N
         jButton5.setText("Informazioni");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -142,8 +164,9 @@ public class InterfacciaSceltaPokemon extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton5);
-        jButton5.setBounds(150, 130, 97, 23);
+        jButton5.setBounds(150, 130, 116, 24);
 
+        jButton6.setFont(new java.awt.Font("Snap ITC", 2, 12)); // NOI18N
         jButton6.setText("Informazioni");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -151,7 +174,7 @@ public class InterfacciaSceltaPokemon extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton6);
-        jButton6.setBounds(270, 250, 97, 23);
+        jButton6.setBounds(250, 130, 116, 24);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

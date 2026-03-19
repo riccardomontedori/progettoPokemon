@@ -84,6 +84,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Snap ITC" size="12" style="2"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Informazioni"/>
       </Properties>
       <Events>
@@ -97,6 +100,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton5">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Snap ITC" size="12" style="2"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Informazioni"/>
       </Properties>
       <Events>
@@ -110,6 +116,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton6">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Snap ITC" size="12" style="2"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Informazioni"/>
       </Properties>
       <Events>
@@ -117,7 +126,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="270" y="250" width="-1" height="-1"/>
+          <AbsoluteConstraints x="250" y="130" width="-1" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
