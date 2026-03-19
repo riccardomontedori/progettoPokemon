@@ -112,6 +112,5 @@ public abstract class Pokemon {
         this.fame += 10;
         this.sete += 10;
         this.abilitaPassiva();
-        this.PokemonMorto();
     }
 }

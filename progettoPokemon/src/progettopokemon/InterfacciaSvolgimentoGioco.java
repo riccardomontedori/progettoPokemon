@@ -16,10 +16,12 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
      * Creates new form InterfacciaSvolgimentoGioco
      */
     private Gestore g;
+
     public InterfacciaSvolgimentoGioco(Gestore g) {
         this.g = g;
         initComponents();
         this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
+        btnRinasci.setEnabled(false);
     }
 
     /**
@@ -43,6 +45,8 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         btnInventario = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtLog = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -97,7 +101,7 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
 
         jLabel4.setText("Vita attuale:");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(35, 66, 62, 16);
+        jLabel4.setBounds(10, 70, 80, 16);
 
         btnEsplora.setText("Esplora");
         btnEsplora.addActionListener(new java.awt.event.ActionListener() {
@@ -125,6 +129,13 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
         getContentPane().add(btnInventario);
         btnInventario.setBounds(260, 290, 130, 23);
 
+        txtLog.setColumns(20);
+        txtLog.setRows(5);
+        jScrollPane1.setViewportView(txtLog);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(470, 10, 234, 370);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -137,14 +148,14 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
     private void btnRinasciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRinasciActionPerformed
         // TODO add your handling code here:
         btnRinasci.setEnabled(false);
-        if(g.getPokemon().PokemonMorto()){
+        if (g.getPokemon().PokemonMorto()) {
             btnRinasci.setEnabled(true);
         }
     }//GEN-LAST:event_btnRinasciActionPerformed
 
     private void btnBeviActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBeviActionPerformed
         // TODO add your handling code here:
-        g.eseguiBevi();    
+        g.eseguiBevi();
         jLabel6.setText("" + g.getPokemon().getSete());
     }//GEN-LAST:event_btnBeviActionPerformed
 
@@ -156,11 +167,40 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
 
     private void btnEsploraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEsploraActionPerformed
         // TODO add your handling code here:
-        g.prossimoTurno();
+        g.getPokemon().subisciTurno();
+        if (g.getPokemon().PokemonMorto()) {
+            btnMangia.setEnabled(false);
+            btnBevi.setEnabled(false);
+            btnCura.setEnabled(false);
+            btnEsplora.setEnabled(false);
+            btnRinasci.setEnabled(true);
+        }
+        Evento e = g.getGestoreEvento().GeneraEventoCasuale(g.getPokemon());
+        g.getGestoreEvento().ApplicaEvento(e, g.getPokemon(), g.getInventario());
+
+        String msg = "";
+        if (e == Evento.TROVA_OGGETTO) {
+            msg = "Hai trovato un oggetto!";
+        } else if (e == Evento.TEAM_ROCKET) {
+            msg = "Il Team Rocket ti ha attaccato!";
+        } else {
+            msg = "Un Pokemon selvatico ti ha colpito!";
+        }
+
+        txtLog.append("> " + msg + "\n");
+        txtLog.setCaretPosition(txtLog.getDocument().getLength());
+        jLabel5.setText("" + g.getPokemon().getVita());
+        jLabel6.setText("" + g.getPokemon().getSete());
+        jLabel3.setText("" + g.getPokemon().getFame());
     }//GEN-LAST:event_btnEsploraActionPerformed
 
     private void btnInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventarioActionPerformed
         // TODO add your handling code here:
+        InterfacciaInventario inv = new InterfacciaInventario(g);
+        inv.setBounds(0, 0, 450, 350); // X, Y, Larghezza, Altezza
+        inv.setLocationRelativeTo(null); // Centra a schermo
+        inv.setResizable(false);
+        inv.setVisible(true);
     }//GEN-LAST:event_btnInventarioActionPerformed
 
     /**
@@ -201,5 +241,7 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea txtLog;
     // End of variables declaration//GEN-END:variables
 }

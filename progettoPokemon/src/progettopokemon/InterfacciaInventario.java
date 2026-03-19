@@ -15,10 +15,17 @@ public class InterfacciaInventario extends javax.swing.JFrame {
     /**
      * Creates new form InterfacciaInventario
      */
-    public InterfacciaInventario() {
+    Inventario i;
+    Gestore g;
+    public InterfacciaInventario(Gestore g) {
+        this.g = g;
         initComponents();
+        Inventario i = new Inventario();
+        jLabel5.setText("" + i.getN_pozioni());
+        jLabel6.setText("" + i.getN_bacche());
+        jLabel7.setText("" + i.getN_acqua());
+        jLabel8.setText("" + i.getN_revitalizzanti());
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -38,31 +45,23 @@ public class InterfacciaInventario extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Numero Pozioni:");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(28, 35, 89, 16);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 35, 100, -1));
 
         jLabel2.setText("Numero Bacche:");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(28, 79, 88, 16);
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 79, 100, -1));
 
         jLabel3.setText("Numero Acquee:");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(28, 125, 90, 16);
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 125, 100, -1));
 
         jLabel4.setText("Numero Revitalizzanti:");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(28, 170, 118, 16);
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(164, 35, 55, 16);
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(164, 79, 55, 16);
-        getContentPane().add(jLabel7);
-        jLabel7.setBounds(164, 125, 55, 16);
-        getContentPane().add(jLabel8);
-        jLabel8.setBounds(174, 170, 74, 16);
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 170, 130, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 55, 16));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(164, 79, 55, 16));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 55, 16));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, 74, 16));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -89,7 +88,7 @@ public class InterfacciaInventario extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new InterfacciaInventario().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new InterfacciaInventario(null).setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

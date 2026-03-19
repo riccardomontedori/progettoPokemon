@@ -66,4 +66,8 @@ public class Gestore {
     public int getTurni() {
         return turni;
     }
+    
+    public GestoreEvento getGestoreEvento() {
+        return this.ge;
+    }
 }
