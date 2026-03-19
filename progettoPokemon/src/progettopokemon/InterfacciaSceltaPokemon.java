@@ -181,17 +181,17 @@ public class InterfacciaSceltaPokemon extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "Pokémon di tipo Erba/Volante. Silenzioso e attento, attacca senza fare rumore grazie alle sue ali morbide. Di giorno usa la fotosintesi per accumulare energia.", "Pokedex", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Pokémon di tipo Erba/Volante. Silenzioso e attento, attacca senza fare rumore grazie alle sue ali morbide. Di giorno usa la fotosintesi per accumulare energia. ABILITò PASSIVA: Possibilità più alta di trovare oggetti utili. ABILITà TATTICA: Fa prendere al pokemon 15 punti vita", "Pokedex", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "Pokémon di tipo Fuoco. Vivace e agile, ha una fiamma sempre accesa sulla coda che indica il suo stato emotivo. Più è forte, più la fiamma arde intensamente.", "Pokedex", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Pokémon di tipo Fuoco. Vivace e agile, ha una fiamma sempre accesa sulla coda che indica il suo stato emotivo. Più è forte, più la fiamma arde intensamente. ABILITà PASSIVA: subisce meno danni dagli incontri: ABILITà TATTICA: per i due successivi non può subire incontri ", "Pokedex", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "Pokémon di tipo Acqua. Produce bolle protettive intorno al collo e alla schiena che ammortizzano gli attacchi. È rapido e ama saltare con grande agilità.", "Pokedex", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Pokémon di tipo Acqua. Produce bolle protettive intorno al collo e alla schiena che ammortizzano gli attacchi. È rapido e ama saltare con grande agilità. ABILITà PASSIVA: La sete e la fame salgono più lentamente. ABILITà TATTICA: La sete e la fame vanno a 0", "Pokedex", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     /**

@@ -17,6 +17,7 @@ public class Froakie extends Pokemon{
     @Override
     public void abilitaPassiva() {
         setSete(getSete() - 5);
+        setFame(getFame() - 5);
     }
     
     @Override
