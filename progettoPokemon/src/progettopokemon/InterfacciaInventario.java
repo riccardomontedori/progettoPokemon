@@ -21,10 +21,15 @@ public class InterfacciaInventario extends javax.swing.JFrame {
         this.g = g;
         initComponents();
         Inventario i = new Inventario();
-        jLabel5.setText("" + i.getN_pozioni());
-        jLabel6.setText("" + i.getN_bacche());
-        jLabel7.setText("" + i.getN_acqua());
-        jLabel8.setText("" + i.getN_revitalizzanti());
+        aggiornaDati();
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+    }
+    
+    public void aggiornaDati(){
+        jLabel5.setText("" + g.getInventario().getN_pozioni());
+        jLabel6.setText("" + g.getInventario().getN_bacche());
+        jLabel7.setText("" + g.getInventario().getN_acqua());
+        jLabel8.setText("" + g.getInventario().getN_revitalizzanti());
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -43,6 +48,7 @@ public class InterfacciaInventario extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        btnChiudiInventario = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -63,8 +69,21 @@ public class InterfacciaInventario extends javax.swing.JFrame {
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 55, 16));
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, 74, 16));
 
+        btnChiudiInventario.setText("Chiudi Inventario");
+        btnChiudiInventario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChiudiInventarioActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnChiudiInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnChiudiInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChiudiInventarioActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnChiudiInventarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -92,6 +111,7 @@ public class InterfacciaInventario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnChiudiInventario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

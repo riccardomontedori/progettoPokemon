@@ -47,6 +47,7 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
         btnInventario = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtLog = new javax.swing.JTextArea();
+        btnAbilità = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -136,6 +137,15 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(470, 10, 234, 370);
 
+        btnAbilità.setText("jButton1");
+        btnAbilità.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAbilitàActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnAbilità);
+        btnAbilità.setBounds(310, 230, 75, 23);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -203,6 +213,10 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
         inv.setVisible(true);
     }//GEN-LAST:event_btnInventarioActionPerformed
 
+    private void btnAbilitàActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbilitàActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAbilitàActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -229,6 +243,7 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAbilità;
     private javax.swing.JButton btnBevi;
     private javax.swing.JButton btnCura;
     private javax.swing.JButton btnEsplora;
