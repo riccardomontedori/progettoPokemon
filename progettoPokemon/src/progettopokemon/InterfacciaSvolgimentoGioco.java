@@ -137,14 +137,14 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(470, 10, 234, 370);
 
-        btnAbilità.setText("jButton1");
+        btnAbilità.setText("Usa abilità");
         btnAbilità.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAbilitàActionPerformed(evt);
             }
         });
         getContentPane().add(btnAbilità);
-        btnAbilità.setBounds(310, 230, 75, 23);
+        btnAbilità.setBounds(310, 230, 120, 23);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -158,8 +158,21 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
     private void btnRinasciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRinasciActionPerformed
         // TODO add your handling code here:
         btnRinasci.setEnabled(false);
-        if (g.getPokemon().PokemonMorto()) {
+        if (g.getPokemon().PokemonMorto() && g.getInventario().usaRevitalizzante()) {
             btnRinasci.setEnabled(true);
+            g.getPokemon().setVita(g.getPokemon().getVitaMax() / 2);
+            g.getPokemon().setFame(0);
+            g.getPokemon().setSete(0);
+            jLabel3.setText("" + g.getPokemon().getFame());
+            jLabel6.setText("" + g.getPokemon().getSete());
+            jLabel5.setText("" + g.getPokemon().getVita());
+            txtLog.append("> Il tuo Pokémon è rinato! \n");
+            btnMangia.setEnabled(true);
+            btnBevi.setEnabled(true);
+            btnCura.setEnabled(true);
+            btnEsplora.setEnabled(true);
+            btnInventario.setEnabled(true);
+            btnRinasci.setEnabled(false);
         }
     }//GEN-LAST:event_btnRinasciActionPerformed
 
@@ -177,14 +190,8 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
 
     private void btnEsploraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEsploraActionPerformed
         // TODO add your handling code here:
+ 
         g.getPokemon().subisciTurno();
-        if (g.getPokemon().PokemonMorto()) {
-            btnMangia.setEnabled(false);
-            btnBevi.setEnabled(false);
-            btnCura.setEnabled(false);
-            btnEsplora.setEnabled(false);
-            btnRinasci.setEnabled(true);
-        }
         Evento e = g.getGestoreEvento().GeneraEventoCasuale(g.getPokemon());
         g.getGestoreEvento().ApplicaEvento(e, g.getPokemon(), g.getInventario());
 
@@ -202,6 +209,18 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
         jLabel5.setText("" + g.getPokemon().getVita());
         jLabel6.setText("" + g.getPokemon().getSete());
         jLabel3.setText("" + g.getPokemon().getFame());
+        
+               
+        if (g.getPokemon().PokemonMorto()) {
+            btnMangia.setEnabled(false);
+            btnBevi.setEnabled(false);
+            btnCura.setEnabled(false);
+            btnEsplora.setEnabled(false);
+        }
+        
+        else if (g.getPokemon().PokemonMorto() && g.getInventario().usaRevitalizzante()){
+            btnRinasci.setEnabled(true);
+        }
     }//GEN-LAST:event_btnEsploraActionPerformed
 
     private void btnInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventarioActionPerformed
