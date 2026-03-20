@@ -32,28 +32,28 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
     }
 
     public void inserimentoPokemon() {
-    Image imgSelezionata;
+        Image imgSelezionata;
 
-    if (g.getPokemon() instanceof Rowlet) {
-        imgSelezionata = imgRowlet;
-    } else if (g.getPokemon() instanceof Froakie) {
-        imgSelezionata = imgFroakie;
-    } else {
-        imgSelezionata = imgChimchar;
-    }
+        if (g.getPokemon() instanceof Rowlet) {
+            imgSelezionata = imgRowlet;
+        } else if (g.getPokemon() instanceof Froakie) {
+            imgSelezionata = imgFroakie;
+        } else {
+            imgSelezionata = imgChimchar;
+        }
 
-    if (imgSelezionata != null) {
-        // Forza la Label ad essere grande quanto l'immagine che vuoi (es. 300x300)
-        int larghezza = 300; 
-        int altezza = 300;
-        
-        jLabel7.setSize(larghezza, altezza);
-        
-        Image scalata = imgSelezionata.getScaledInstance(larghezza, altezza, Image.SCALE_SMOOTH);
-        jLabel7.setIcon(new ImageIcon(scalata));
-        jLabel7.setText("");
+        if (imgSelezionata != null) {
+            // Forza la Label ad essere grande quanto l'immagine che vuoi (es. 300x300)
+            int larghezza = 300;
+            int altezza = 300;
+
+            jLabel7.setSize(larghezza, altezza);
+
+            Image scalata = imgSelezionata.getScaledInstance(larghezza, altezza, Image.SCALE_SMOOTH);
+            jLabel7.setIcon(new ImageIcon(scalata));
+            jLabel7.setText("");
+        }
     }
-}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -126,7 +126,7 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
 
         jLabel2.setText("Sete attuale:");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(250, 30, 70, 16);
+        jLabel2.setBounds(190, 30, 80, 16);
 
         jLabel3.setText("0");
         getContentPane().add(jLabel3);
@@ -147,11 +147,11 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
 
         jLabel5.setText("35");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(115, 66, 40, 16);
+        jLabel5.setBounds(90, 70, 160, 16);
 
         jLabel6.setText("0");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(320, 30, 50, 16);
+        jLabel6.setBounds(310, 30, 50, 16);
 
         btnInventario.setText("Apri Inventario");
         btnInventario.addActionListener(new java.awt.event.ActionListener() {
@@ -249,8 +249,15 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
             btnBevi.setEnabled(false);
             btnCura.setEnabled(false);
             btnEsplora.setEnabled(false);
+            txtLog.append("> ATTENZIONE: " + g.getPokemon().getClass().getSimpleName() + " è esausto!\n");
+            txtLog.append("> Non può più combattere o esplorare.\n");
+            jLabel5.setText("POKEMON ESAUSTO");
         } else if (g.getPokemon().PokemonMorto() && g.getInventario().usaRevitalizzante()) {
             btnRinasci.setEnabled(true);
+            txtLog.append("> ATTENZIONE: " + g.getPokemon().getClass().getSimpleName() + " è esausto!\n");
+            txtLog.append("> Non può più combattere o esplorare.\n");
+            txtLog.append("> Usa un Revitalizzante per continuare.\n");
+            jLabel5.setText("POKEMON ESAUSTO");
         }
     }//GEN-LAST:event_btnEsploraActionPerformed
 
@@ -265,6 +272,17 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
 
     private void btnAbilitàActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbilitàActionPerformed
         // TODO add your handling code here:
+        if (g.getPokemon() instanceof Rowlet) {
+            g.getPokemon().usaAbilita();
+            jLabel5.setText("" + g.getPokemon().getVita());
+        } else if (g.getPokemon() instanceof Froakie) {
+            g.getPokemon().usaAbilita();
+            jLabel6.setText("" + g.getPokemon().getSete());
+        jLabel3.setText("" + g.getPokemon().getFame());
+        } else {
+            
+        }
+        btnAbilità.setEnabled(false);
     }//GEN-LAST:event_btnAbilitàActionPerformed
 
     /**
