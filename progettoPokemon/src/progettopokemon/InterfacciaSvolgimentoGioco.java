@@ -4,6 +4,9 @@
  */
 package progettopokemon;
 
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author montedori.riccardo
@@ -16,13 +19,41 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
      * Creates new form InterfacciaSvolgimentoGioco
      */
     private Gestore g;
+    private Image imgFroakie = new ImageIcon("immagine_froakie.png").getImage();
+    private Image imgRowlet = new ImageIcon("immagine_rowlet.png").getImage();
+    private Image imgChimchar = new ImageIcon("immagine_chimchar.png").getImage();
 
     public InterfacciaSvolgimentoGioco(Gestore g) {
         this.g = g;
         initComponents();
         this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
         btnRinasci.setEnabled(false);
+        inserimentoPokemon();
     }
+
+    public void inserimentoPokemon() {
+    Image imgSelezionata;
+
+    if (g.getPokemon() instanceof Rowlet) {
+        imgSelezionata = imgRowlet;
+    } else if (g.getPokemon() instanceof Froakie) {
+        imgSelezionata = imgFroakie;
+    } else {
+        imgSelezionata = imgChimchar;
+    }
+
+    if (imgSelezionata != null) {
+        // Forza la Label ad essere grande quanto l'immagine che vuoi (es. 300x300)
+        int larghezza = 300; 
+        int altezza = 300;
+        
+        jLabel7.setSize(larghezza, altezza);
+        
+        Image scalata = imgSelezionata.getScaledInstance(larghezza, altezza, Image.SCALE_SMOOTH);
+        jLabel7.setIcon(new ImageIcon(scalata));
+        jLabel7.setText("");
+    }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -48,6 +79,7 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtLog = new javax.swing.JTextArea();
         btnAbilità = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -145,6 +177,8 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
         });
         getContentPane().add(btnAbilità);
         btnAbilità.setBounds(310, 230, 120, 23);
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(30, 130, 37, 16);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -190,7 +224,7 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
 
     private void btnEsploraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEsploraActionPerformed
         // TODO add your handling code here:
- 
+
         g.getPokemon().subisciTurno();
         Evento e = g.getGestoreEvento().GeneraEventoCasuale(g.getPokemon());
         g.getGestoreEvento().ApplicaEvento(e, g.getPokemon(), g.getInventario());
@@ -209,16 +243,13 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
         jLabel5.setText("" + g.getPokemon().getVita());
         jLabel6.setText("" + g.getPokemon().getSete());
         jLabel3.setText("" + g.getPokemon().getFame());
-        
-               
+
         if (g.getPokemon().PokemonMorto()) {
             btnMangia.setEnabled(false);
             btnBevi.setEnabled(false);
             btnCura.setEnabled(false);
             btnEsplora.setEnabled(false);
-        }
-        
-        else if (g.getPokemon().PokemonMorto() && g.getInventario().usaRevitalizzante()){
+        } else if (g.getPokemon().PokemonMorto() && g.getInventario().usaRevitalizzante()) {
             btnRinasci.setEnabled(true);
         }
     }//GEN-LAST:event_btnEsploraActionPerformed
@@ -275,6 +306,7 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea txtLog;
     // End of variables declaration//GEN-END:variables

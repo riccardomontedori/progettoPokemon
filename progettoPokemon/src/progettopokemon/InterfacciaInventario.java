@@ -26,11 +26,13 @@ public class InterfacciaInventario extends javax.swing.JFrame {
     }
     
     public void aggiornaDati(){
-        jLabel5.setText("" + g.getInventario().getN_pozioni());
-        jLabel6.setText("" + g.getInventario().getN_bacche());
-        jLabel7.setText("" + g.getInventario().getN_acqua());
-        jLabel8.setText("" + g.getInventario().getN_revitalizzanti());
+        jLabel12.setText("" + g.getInventario().getN_pozioni());
+        jLabel11.setText("" + g.getInventario().getN_bacche());
+        jLabel10.setText("" + g.getInventario().getN_acqua());
+        jLabel9.setText("" + g.getInventario().getN_revitalizzanti());
     }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -44,30 +46,31 @@ public class InterfacciaInventario extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         btnChiudiInventario = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setFont(new java.awt.Font("SimSun-ExtB", 1, 14)); // NOI18N
         jLabel1.setText("Numero Pozioni:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 35, 100, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 120, -1));
 
+        jLabel2.setFont(new java.awt.Font("SimSun-ExtB", 1, 14)); // NOI18N
         jLabel2.setText("Numero Bacche:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 79, 100, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 130, -1));
 
+        jLabel3.setFont(new java.awt.Font("SimSun-ExtB", 1, 14)); // NOI18N
         jLabel3.setText("Numero Acquee:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 125, 100, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 120, -1));
 
+        jLabel4.setFont(new java.awt.Font("SimSun-ExtB", 1, 14)); // NOI18N
         jLabel4.setText("Numero Revitalizzanti:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 170, 130, -1));
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 55, 16));
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(164, 79, 55, 16));
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 55, 16));
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, 74, 16));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 180, -1));
 
         btnChiudiInventario.setText("Chiudi Inventario");
         btnChiudiInventario.addActionListener(new java.awt.event.ActionListener() {
@@ -75,7 +78,27 @@ public class InterfacciaInventario extends javax.swing.JFrame {
                 btnChiudiInventarioActionPerformed(evt);
             }
         });
-        getContentPane().add(btnChiudiInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, -1, -1));
+        getContentPane().add(btnChiudiInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 250, -1, -1));
+
+        jLabel9.setFont(new java.awt.Font("SimSun-ExtB", 1, 14)); // NOI18N
+        jLabel9.setText("0");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 100, -1));
+
+        jLabel10.setFont(new java.awt.Font("SimSun-ExtB", 1, 14)); // NOI18N
+        jLabel10.setText("0");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, 130, -1));
+
+        jLabel11.setFont(new java.awt.Font("SimSun-ExtB", 1, 14)); // NOI18N
+        jLabel11.setText("0");
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 100, -1));
+
+        jLabel12.setFont(new java.awt.Font("SimSun-ExtB", 1, 14)); // NOI18N
+        jLabel12.setText("0");
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 100, -1));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI Symbol", 3, 24)); // NOI18N
+        jLabel5.setText("INVENTARIO");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 150, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -113,12 +136,13 @@ public class InterfacciaInventario extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnChiudiInventario;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     // End of variables declaration//GEN-END:variables
 }
