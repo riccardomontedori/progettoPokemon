@@ -20,7 +20,7 @@ public class InterfacciaInventario extends javax.swing.JFrame {
     public InterfacciaInventario(Gestore g) {
         this.g = g;
         initComponents();
-        Inventario i = new Inventario();
+        g.getInventario();
         aggiornaDati();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
@@ -28,8 +28,8 @@ public class InterfacciaInventario extends javax.swing.JFrame {
     public void aggiornaDati(){
         jLabel12.setText("" + g.getInventario().getN_pozioni());
         jLabel11.setText("" + g.getInventario().getN_bacche());
-        jLabel10.setText("" + g.getInventario().getN_acqua());
-        jLabel9.setText("" + g.getInventario().getN_revitalizzanti());
+        jLabel9.setText("" + g.getInventario().getN_acqua());
+        jLabel10.setText("" + g.getInventario().getN_revitalizzanti());
     }
     
     

@@ -61,11 +61,14 @@ public abstract class Pokemon {
         return vita;
     }
 
-    public int Rinascita(Inventario i) {
-        if (i.usaRevitalizzante() && PokemonMorto()) {
+    public boolean Rinascita(Inventario i) {
+        if (PokemonMorto() && i.usaRevitalizzante()) {
             this.vita = vitaMax / 2;
+            this.fame = 0;
+            this.sete = 0;
+            return true;
         }
-        return vita;
+        return false;
     }
 
     public int getVita() {
@@ -103,11 +106,11 @@ public abstract class Pokemon {
     public void setVivo(boolean vivo) {
         this.vivo = vivo;
     }
-    
+
     public abstract int usaAbilita();
-    
+
     public abstract void abilitaPassiva();
-    
+
     public void subisciTurno() {
         this.fame += 10;
         this.sete += 10;

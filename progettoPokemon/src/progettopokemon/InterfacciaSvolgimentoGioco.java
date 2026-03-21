@@ -393,22 +393,25 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
 
     private void btnRinasciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRinasciActionPerformed
         // TODO add your handling code here:
-        btnRinasci.setEnabled(false);
-        if (g.getPokemon().PokemonMorto() && g.getInventario().usaRevitalizzante()) {
-            btnRinasci.setEnabled(true);
-            g.getPokemon().setVita(g.getPokemon().getVitaMax() / 2);
-            g.getPokemon().setFame(0);
-            g.getPokemon().setSete(0);
+        boolean successo = g.getPokemon().Rinascita(g.getInventario());
+
+        if (successo) {
+            // Aggiorna le scritte (Label) con i nuovi valori resettati
             jLabel3.setText("" + g.getPokemon().getFame());
             jLabel6.setText("" + g.getPokemon().getSete());
             jLabel5.setText("" + g.getPokemon().getVita());
+
             txtLog.append("> Il tuo Pokémon è rinato! \n");
             btnMangia.setEnabled(true);
             btnBevi.setEnabled(true);
             btnCura.setEnabled(true);
             btnEsplora.setEnabled(true);
             btnInventario.setEnabled(true);
+            btnAbilità.setEnabled(true);
+
             btnRinasci.setEnabled(false);
+        } else {
+            txtLog.append("> Errore: Non hai Revitalizzanti o il Pokémon è già vivo!\n");
         }
     }//GEN-LAST:event_btnRinasciActionPerformed
 
@@ -426,7 +429,6 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
 
     private void btnEsploraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEsploraActionPerformed
         // TODO add your handling code here:
-
         g.getPokemon().subisciTurno();
         Evento e = g.getGestoreEvento().GeneraEventoCasuale(g.getPokemon());
         g.getGestoreEvento().ApplicaEvento(e, g.getPokemon(), g.getInventario());
@@ -442,6 +444,7 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
 
         txtLog.append("> " + msg + "\n");
         txtLog.setCaretPosition(txtLog.getDocument().getLength());
+
         jLabel5.setText("" + g.getPokemon().getVita());
         jLabel6.setText("" + g.getPokemon().getSete());
         jLabel3.setText("" + g.getPokemon().getFame());
@@ -451,15 +454,17 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
             btnBevi.setEnabled(false);
             btnCura.setEnabled(false);
             btnEsplora.setEnabled(false);
-            txtLog.append("> ATTENZIONE: " + g.getPokemon().getClass().getSimpleName() + " è esausto!\n");
-            txtLog.append("> Non può più combattere o esplorare.\n");
+            btnAbilità.setEnabled(false);
+
             jLabel5.setText("POKEMON ESAUSTO");
-        } else if (g.getPokemon().PokemonMorto() && g.getInventario().usaRevitalizzante()) {
-            btnRinasci.setEnabled(true);
             txtLog.append("> ATTENZIONE: " + g.getPokemon().getClass().getSimpleName() + " è esausto!\n");
-            txtLog.append("> Non può più combattere o esplorare.\n");
-            txtLog.append("> Usa un Revitalizzante per continuare.\n");
-            jLabel5.setText("POKEMON ESAUSTO");
+
+            if (g.getInventario().getN_revitalizzanti() > 0) {
+                btnRinasci.setEnabled(true);
+                txtLog.append("> Usa un Revitalizzante per continuare.\n");
+            } else {
+                txtLog.append("> Non hai Revitalizzanti! Game Over.\n");
+            }
         }
     }//GEN-LAST:event_btnEsploraActionPerformed
 
