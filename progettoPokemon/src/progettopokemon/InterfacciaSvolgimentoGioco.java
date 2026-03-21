@@ -22,13 +22,212 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
     private Image imgFroakie = new ImageIcon("immagine_froakie.png").getImage();
     private Image imgRowlet = new ImageIcon("immagine_rowlet.png").getImage();
     private Image imgChimchar = new ImageIcon("immagine_chimchar.png").getImage();
+    private Image imgSfondo = new ImageIcon("immagine_sfondo.jpg").getImage();
+    private Image imgCorrente;
 
     public InterfacciaSvolgimentoGioco(Gestore g) {
         this.g = g;
-        initComponents();
+        initComponentsCustom();
         this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
         btnRinasci.setEnabled(false);
-        inserimentoPokemon();
+
+        if (g.getPokemon() instanceof Rowlet) {
+            imgCorrente = imgRowlet;
+        } else if (g.getPokemon() instanceof Froakie) {
+            imgCorrente = imgFroakie;
+        } else {
+            imgCorrente = imgChimchar;
+        }
+
+        this.addComponentListener(new java.awt.event.ComponentAdapter() {
+            @Override
+            public void componentResized(java.awt.event.ComponentEvent e) {
+                ridimensionaImmagine();
+                ridimensionaSfondo();
+            }
+        });
+    }
+
+    private void ridimensionaSfondo() {
+        if (imgSfondo != null && jLabel8.getWidth() > 0 && jLabel8.getHeight() > 0) {
+            Image scalata = imgSfondo.getScaledInstance(jLabel8.getWidth(), jLabel8.getHeight(), Image.SCALE_SMOOTH);
+            jLabel8.setIcon(new ImageIcon(scalata));
+        }
+    }
+
+    private void ridimensionaImmagine() {
+        if (imgCorrente != null && jLabel7.getWidth() > 0 && jLabel7.getHeight() > 0) {
+            // Prendiamo la dimensione attuale della JLabel (calcolata dal GridBagLayout)
+            int w = jLabel7.getWidth();
+            int h = jLabel7.getHeight();
+
+            // --- NUOVO LIMITE MASSIMO PIÙ PICCOLO (es. 250 pixel) ---
+            // Impedisce all'immagine di superare questa grandezza anche su schermi giganti
+            if (w > 250) {
+                w = 250;
+            }
+            if (h > 250) {
+                h = 250;
+            }
+
+            // --- DIMENSIONE MINIMA (Opzionale, es. 100 pixel) ---
+            // Impedisce all'immagine di sparire se rimpicciolisci troppo la finestra
+            if (w < 100) {
+                w = 100;
+            }
+            if (h < 100) {
+                h = 100;
+            }
+
+            // Calcolo per mantenere le PROPORZIONI (Aspect Ratio) originali
+            double imgW = imgCorrente.getWidth(null);
+            double imgH = imgCorrente.getHeight(null);
+
+            if (imgW > 0 && imgH > 0) {
+                double ratioX = (double) w / imgW;
+                double ratioY = (double) h / imgH;
+
+                // Scegliamo il rapporto più piccolo per far stare l'immagine nella cella
+                double ratio = Math.min(ratioX, ratioY);
+
+                // Calcoliamo le dimensioni finali
+                int finalW = (int) (imgW * ratio);
+                int finalH = (int) (imgH * ratio);
+
+                // Evitiamo errori se il calcolo porta a zero
+                if (finalW > 0 && finalH > 0) {
+                    Image scalata = imgCorrente.getScaledInstance(finalW, finalH, Image.SCALE_SMOOTH);
+                    jLabel7.setIcon(new ImageIcon(scalata));
+                }
+            }
+        }
+    }
+
+    private void initComponentsCustom() {
+        btnBevi = new javax.swing.JButton("Bevi");
+        btnMangia = new javax.swing.JButton("Mangia");
+        btnCura = new javax.swing.JButton("Cura");
+        btnRinasci = new javax.swing.JButton("Rinasci");
+        btnEsplora = new javax.swing.JButton("Esplora");
+        btnInventario = new javax.swing.JButton("Apri Inventario");
+        btnAbilità = new javax.swing.JButton("Usa abilità");
+
+        jLabel1 = new javax.swing.JLabel("Fame attuale:");
+        jLabel2 = new javax.swing.JLabel("Sete attuale:");
+        jLabel3 = new javax.swing.JLabel("0");
+        jLabel4 = new javax.swing.JLabel("Vita attuale:");
+        jLabel5 = new javax.swing.JLabel("35");
+        jLabel6 = new javax.swing.JLabel("0");
+
+        jLabel7 = new javax.swing.JLabel();
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setPreferredSize(new java.awt.Dimension(200, 200));
+
+        jLabel8 = new javax.swing.JLabel();
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        txtLog = new javax.swing.JTextArea();
+        txtLog.setEditable(false);
+        txtLog.setColumns(20);
+        txtLog.setLineWrap(true);
+        jScrollPane1 = new javax.swing.JScrollPane(txtLog);
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        javax.swing.JLayeredPane layeredPane = new javax.swing.JLayeredPane();
+        getContentPane().setLayout(new java.awt.BorderLayout());
+        getContentPane().add(layeredPane, java.awt.BorderLayout.CENTER);
+
+        javax.swing.JPanel contentPanel = new javax.swing.JPanel(new java.awt.GridBagLayout());
+        contentPanel.setOpaque(false);
+
+        java.awt.GridBagConstraints c = new java.awt.GridBagConstraints();
+        c.insets = new java.awt.Insets(10, 10, 10, 10);
+        c.fill = java.awt.GridBagConstraints.BOTH;
+
+        javax.swing.JPanel pnlStats = new javax.swing.JPanel(new java.awt.GridLayout(3, 2, 5, 5));
+        pnlStats.setOpaque(false);
+        pnlStats.add(jLabel4);
+        pnlStats.add(jLabel5);
+        pnlStats.add(jLabel2);
+        pnlStats.add(jLabel6);
+        pnlStats.add(jLabel1);
+        pnlStats.add(jLabel3);
+
+        c.gridx = 0;
+        c.gridy = 0;
+        c.weightx = 0.3;
+        c.weighty = 0.2;
+        contentPanel.add(pnlStats, c);
+
+        c.gridx = 0;
+        c.gridy = 1;
+        c.weighty = 0.8;
+        contentPanel.add(jLabel7, c);
+
+        javax.swing.JPanel pnlBottoni = new javax.swing.JPanel(new java.awt.GridBagLayout());
+        pnlBottoni.setOpaque(false);
+        java.awt.GridBagConstraints cb = new java.awt.GridBagConstraints();
+        cb.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        cb.insets = new java.awt.Insets(5, 5, 5, 5);
+        cb.weightx = 1.0;
+
+        cb.gridx = 0;
+        cb.gridy = 0;
+        pnlBottoni.add(btnCura, cb);
+        cb.gridx = 1;
+        pnlBottoni.add(btnMangia, cb);
+        cb.gridx = 0;
+        cb.gridy = 1;
+        pnlBottoni.add(btnBevi, cb);
+        cb.gridx = 1;
+        pnlBottoni.add(btnRinasci, cb);
+        cb.gridx = 0;
+        cb.gridy = 2;
+        cb.gridwidth = 2;
+        pnlBottoni.add(btnAbilità, cb);
+        cb.gridx = 0;
+        cb.gridy = 3;
+        pnlBottoni.add(btnEsplora, cb);
+        cb.gridx = 0;
+        cb.gridy = 4;
+        pnlBottoni.add(btnInventario, cb);
+
+        c.gridx = 1;
+        c.gridy = 0;
+        c.gridheight = 2;
+        c.weightx = 0.3;
+        c.weighty = 1.0;
+        contentPanel.add(pnlBottoni, c);
+
+        c.gridx = 2;
+        c.gridy = 0;
+        c.gridheight = 2;
+        c.weightx = 0.4;
+        contentPanel.add(jScrollPane1, c);
+
+        layeredPane.add(jLabel8, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        layeredPane.add(contentPanel, javax.swing.JLayeredPane.PALETTE_LAYER);
+
+        this.addComponentListener(new java.awt.event.ComponentAdapter() {
+            @Override
+            public void componentResized(java.awt.event.ComponentEvent e) {
+                jLabel8.setBounds(0, 0, layeredPane.getWidth(), layeredPane.getHeight());
+                contentPanel.setBounds(0, 0, layeredPane.getWidth(), layeredPane.getHeight());
+                ridimensionaSfondo();
+                ridimensionaImmagine();
+            }
+        });
+
+        btnMangia.addActionListener(this::btnMangiaActionPerformed);
+        btnBevi.addActionListener(this::btnBeviActionPerformed);
+        btnCura.addActionListener(this::btnCuraActionPerformed);
+        btnEsplora.addActionListener(this::btnEsploraActionPerformed);
+        btnRinasci.addActionListener(this::btnRinasciActionPerformed);
+        btnAbilità.addActionListener(this::btnAbilitàActionPerformed);
+        btnInventario.addActionListener(this::btnInventarioActionPerformed);
+
+        pack();
     }
 
     public void inserimentoPokemon() {
@@ -80,6 +279,7 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
         txtLog = new javax.swing.JTextArea();
         btnAbilità = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -179,6 +379,8 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
         btnAbilità.setBounds(310, 230, 120, 23);
         getContentPane().add(jLabel7);
         jLabel7.setBounds(30, 130, 37, 16);
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(40, 270, 0, 0);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -278,9 +480,9 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
         } else if (g.getPokemon() instanceof Froakie) {
             g.getPokemon().usaAbilita();
             jLabel6.setText("" + g.getPokemon().getSete());
-        jLabel3.setText("" + g.getPokemon().getFame());
+            jLabel3.setText("" + g.getPokemon().getFame());
         } else {
-            
+
         }
         btnAbilità.setEnabled(false);
     }//GEN-LAST:event_btnAbilitàActionPerformed
@@ -325,6 +527,7 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea txtLog;
     // End of variables declaration//GEN-END:variables
