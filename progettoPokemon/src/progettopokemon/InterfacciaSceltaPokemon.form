@@ -85,7 +85,7 @@
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Snap ITC" size="12" style="2"/>
+          <Font name="Arial Black" size="12" style="2"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Informazioni"/>
       </Properties>
@@ -94,14 +94,14 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="50" y="120" width="110" height="-1"/>
+          <AbsoluteConstraints x="50" y="120" width="130" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
     <Component class="javax.swing.JButton" name="jButton5">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Snap ITC" size="12" style="2"/>
+          <Font name="Arial Black" size="12" style="2"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Informazioni"/>
       </Properties>
@@ -117,7 +117,7 @@
     <Component class="javax.swing.JButton" name="jButton6">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Snap ITC" size="12" style="2"/>
+          <Font name="Arial Black" size="12" style="2"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Informazioni"/>
       </Properties>

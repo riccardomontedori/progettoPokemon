@@ -106,6 +106,17 @@ public class InterfacciaSceltaPokemon extends javax.swing.JFrame {
         nuovaSchermata.setVisible(true);
         this.dispose();
     }
+    
+    private void mostraMessaggioStretto(String testo) {
+    javax.swing.JTextArea area = new javax.swing.JTextArea(testo);
+    area.setColumns(30);           // Qui decidi la larghezza (30 caratteri)
+    area.setLineWrap(true);        // Attiva l'andata a capo
+    area.setWrapStyleWord(true);   // Non taglia le parole a metà
+    area.setEditable(false);       // Non fa scrivere l'utente
+    area.setBackground(new java.awt.Color(0,0,0,0)); // Sfondo trasparente
+    
+    JOptionPane.showMessageDialog(this, area, "Pokedex", JOptionPane.INFORMATION_MESSAGE);
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -149,7 +160,7 @@ public class InterfacciaSceltaPokemon extends javax.swing.JFrame {
         getContentPane().add(jButton4);
         jButton4.setBounds(260, 190, 75, 23);
 
-        jButton1.setFont(new java.awt.Font("Snap ITC", 2, 12)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Arial Black", 2, 12)); // NOI18N
         jButton1.setText("Informazioni");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,9 +168,9 @@ public class InterfacciaSceltaPokemon extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(50, 120, 110, 24);
+        jButton1.setBounds(50, 120, 130, 25);
 
-        jButton5.setFont(new java.awt.Font("Snap ITC", 2, 12)); // NOI18N
+        jButton5.setFont(new java.awt.Font("Arial Black", 2, 12)); // NOI18N
         jButton5.setText("Informazioni");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -167,9 +178,9 @@ public class InterfacciaSceltaPokemon extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton5);
-        jButton5.setBounds(150, 130, 116, 24);
+        jButton5.setBounds(150, 130, 112, 25);
 
-        jButton6.setFont(new java.awt.Font("Snap ITC", 2, 12)); // NOI18N
+        jButton6.setFont(new java.awt.Font("Arial Black", 2, 12)); // NOI18N
         jButton6.setText("Informazioni");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -177,24 +188,61 @@ public class InterfacciaSceltaPokemon extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton6);
-        jButton6.setBounds(250, 130, 116, 24);
+        jButton6.setBounds(250, 130, 112, 25);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "Pokémon di tipo Erba/Volante. Silenzioso e attento, attacca senza fare rumore grazie alle sue ali morbide. Di giorno usa la fotosintesi per accumulare energia. ABILITò PASSIVA: Possibilità più alta di trovare oggetti utili. ABILITà TATTICA: Fa prendere al pokemon 15 punti vita", "Pokedex", JOptionPane.INFORMATION_MESSAGE);
+        String msg = "Pokémon di tipo Erba/Volante. Silenzioso e attento, attacca senza fare rumore grazie alle sue ali morbide. Di giorno usa la fotosintesi per accumulare energia.\n\n"
+               + "ABILITÀ PASSIVA: Possibilità più alta di trovare oggetti utili.\n"
+               + "ABILITÀ TATTICA: Cura il pokemon di 15 punti vita.";
+    
+    javax.swing.JTextArea area = new javax.swing.JTextArea(msg);
+    area.setColumns(35);         
+    area.setRows(6);            
+    area.setLineWrap(true);
+    area.setWrapStyleWord(true);
+    area.setEditable(false);
+    area.setOpaque(false);
+    area.setBorder(null);    
+
+    JOptionPane.showMessageDialog(this, area, "Pokedex - Rowlet", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "Pokémon di tipo Fuoco. Vivace e agile, ha una fiamma sempre accesa sulla coda che indica il suo stato emotivo. Più è forte, più la fiamma arde intensamente. ABILITà PASSIVA: subisce meno danni dagli incontri: ABILITà TATTICA: per i due successivi non può subire incontri ", "Pokedex", JOptionPane.INFORMATION_MESSAGE);
+        String msg = "Pokémon di tipo Fuoco. Vivace e agile, ha una fiamma sempre accesa sulla coda che indica il suo stato emotivo. Più è forte, più la fiamma arde intensamente.\n\n"
+               + "ABILITÀ PASSIVA: Subisce meno danni dagli incontri.\n"
+               + "ABILITÀ TATTICA: Diminuisce del 50% i danni subiti.";
+    
+    javax.swing.JTextArea area = new javax.swing.JTextArea(msg);
+    area.setColumns(35);
+    area.setRows(6);
+    area.setLineWrap(true);
+    area.setWrapStyleWord(true);
+    area.setEditable(false);
+    area.setOpaque(false);
+
+    JOptionPane.showMessageDialog(this, area, "Pokedex - Chimchar", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "Pokémon di tipo Acqua. Produce bolle protettive intorno al collo e alla schiena che ammortizzano gli attacchi. È rapido e ama saltare con grande agilità. ABILITà PASSIVA: La sete e la fame salgono più lentamente. ABILITà TATTICA: La sete e la fame vanno a 0", "Pokedex", JOptionPane.INFORMATION_MESSAGE);
+        String msg = "Pokémon di tipo Acqua. Produce bolle protettive intorno al collo e alla schiena che ammortizzano gli attacchi. È rapido e ama saltare con grande agilità.\n\n"
+               + "ABILITÀ PASSIVA: La sete e la fame salgono più lentamente.\n"
+               + "ABILITÀ TATTICA: La sete e la fame tornano a 0.";
+    
+    javax.swing.JTextArea area = new javax.swing.JTextArea(msg);
+    area.setColumns(35);
+    area.setRows(6);
+    area.setLineWrap(true);
+    area.setWrapStyleWord(true);
+    area.setEditable(false);
+    area.setOpaque(false);
+
+    JOptionPane.showMessageDialog(this, area, "Pokedex - Froakie", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
