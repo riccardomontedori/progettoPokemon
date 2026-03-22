@@ -482,13 +482,17 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
         if (g.getPokemon() instanceof Rowlet) {
             g.getPokemon().usaAbilita();
             jLabel5.setText("" + g.getPokemon().getVita());
+            txtLog.append("> Rowlet ha usato Sintesi! Vita ripristinata.\n");
         } else if (g.getPokemon() instanceof Froakie) {
             g.getPokemon().usaAbilita();
             jLabel6.setText("" + g.getPokemon().getSete());
             jLabel3.setText("" + g.getPokemon().getFame());
-        } else {
-
+            txtLog.append("> Froakie ha usato Idratazione! Fame e Sete ridotte.\n");
+        } else if (g.getPokemon() instanceof Chimchar) {
+            g.getPokemon().usaAbilita();
+            txtLog.append("> Chimchar ha usato Schudo Fiammeggiante! Subirà meno danni d'ora in poi.\n");
         }
+
         btnAbilità.setEnabled(false);
     }//GEN-LAST:event_btnAbilitàActionPerformed
 

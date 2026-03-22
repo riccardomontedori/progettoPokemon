@@ -9,7 +9,7 @@ package progettopokemon;
  * @author montedori.riccardo
  */
 public class Chimchar extends Pokemon{
-    private int turniImmune = 0;
+    private boolean scudoFiammeggiante = false;
 
     public Chimchar() {
         
@@ -17,21 +17,17 @@ public class Chimchar extends Pokemon{
 
     @Override
     public void abilitaPassiva() {
-        if (turniImmune > 0) {
-            setFame(getFame() - 5);
-            setSete(getSete() - 5);
-            turniImmune--;
-        }
+        
     }
 
     @Override
     public int usaAbilita() {
-        turniImmune = 2;
-        return turniImmune;
+        this.scudoFiammeggiante = true;
+        return 1;
     }
-
-    public int getTurniImmune() {
-        return turniImmune;
+    
+    public boolean isScudoAttivo() {
+        return scudoFiammeggiante;
     }
 }
 

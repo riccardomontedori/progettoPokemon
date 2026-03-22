@@ -47,37 +47,36 @@ public class GestoreEvento {
     }
 
     public void ApplicaEvento(Evento e, Pokemon p, Inventario i) {
-        Random randomOggetto = new Random();
-        switch (e) {
-            case TROVA_OGGETTO:
-                int scelta = randomOggetto.nextInt(4);
+    Random randomOggetto = new Random();
+    switch (e) {
+        case TROVA_OGGETTO:
+            int scelta = randomOggetto.nextInt(4);
+            if (scelta == 0) i.setN_acqua(i.getN_acqua() + 1);
+            else if (scelta == 1) i.setN_bacche(i.getN_bacche() + 1);
+            else if (scelta == 2) i.setN_pozioni(i.getN_pozioni() + 1);
+            else i.setN_revitalizzanti(i.getN_revitalizzanti() + 1);
+            break;
 
-                if (scelta == 0) {
-                    i.setN_acqua(i.getN_acqua() + 1);
-                } else if (scelta == 1) {
-                    i.setN_bacche(i.getN_bacche() + 1);
-                } else if (scelta == 2) {
-                    i.setN_pozioni(i.getN_pozioni() + 1);
-                } else {
-                    i.setN_revitalizzanti(i.getN_revitalizzanti() + 1);
-                }
-                break;
-            case TEAM_ROCKET:
-                if (p instanceof Chimchar) {
-                    p.setVita(p.getVita() - 10);
-                } else {
-                    p.setVita(p.getVita() - 15);
-                }
-                break;
+        case TEAM_ROCKET:
+            if (p instanceof Chimchar) {
+                // Se lo scudo è attivo toglie 5, altrimenti 10
+                int danno = ((Chimchar) p).isScudoAttivo() ? 5 : 10;
+                p.setVita(p.getVita() - danno);
+            } else {
+                p.setVita(p.getVita() - 15);
+            }
+            break;
 
-            case POKEMON_SELVATICO:
-                if (p instanceof Chimchar) {
-                    p.setVita(p.getVita() - 5);
-                } else {
-                    p.setVita(p.getVita() - 10);
-                }
-                break;
-        }
-        p.PokemonMorto();
+        case POKEMON_SELVATICO:
+            if (p instanceof Chimchar) {
+                // Se lo scudo è attivo toglie solo 2, altrimenti 5
+                int danno = ((Chimchar) p).isScudoAttivo() ? 2 : 5;
+                p.setVita(p.getVita() - danno);
+            } else {
+                p.setVita(p.getVita() - 10);
+            }
+            break;
     }
+    p.PokemonMorto(); // Controlla se è morto dopo i danni
+}
 }

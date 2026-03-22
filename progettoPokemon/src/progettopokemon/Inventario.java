@@ -16,10 +16,10 @@ public class Inventario {
     private int n_acqua;
 
     public Inventario() {
-        this.n_acqua = 0;
-        this.n_bacche = 0;
+        this.n_acqua = 1;
+        this.n_bacche = 1;
         this.n_revitalizzanti = 0;
-        this.n_pozioni = 0;
+        this.n_pozioni = 1;
     }
 
     public boolean usaAcqua() {

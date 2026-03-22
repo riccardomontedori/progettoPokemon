@@ -25,9 +25,6 @@ public class Gestore {
     public void prossimoTurno() {
         turni++;
         p.subisciTurno();
-        if (p instanceof Chimchar && ((Chimchar) p).getTurniImmune() > 0) {
-            return;
-        }
         Evento evento = ge.GeneraEventoCasuale(p);
         ge.ApplicaEvento(evento, p, i);
     }
