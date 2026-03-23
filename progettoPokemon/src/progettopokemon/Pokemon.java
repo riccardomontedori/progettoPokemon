@@ -62,14 +62,13 @@ public abstract class Pokemon {
     }
 
     public boolean Rinascita(Inventario i) {
-        if (PokemonMorto() && i.usaRevitalizzante()) {
-            this.vita = vitaMax / 2;
-            this.fame = 0;
-            this.sete = 0;
-            return true;
-        }
-        return false;
+    
+    if (!this.vivo && i.usaRevitalizzante()) { 
+        this.vivo = true;  
+        return true;
     }
+    return false;
+}
 
     public int getVita() {
         return vita;

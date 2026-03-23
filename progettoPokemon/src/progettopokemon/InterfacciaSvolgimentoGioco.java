@@ -5,6 +5,7 @@
 package progettopokemon;
 
 import java.awt.Image;
+import java.util.Set;
 import javax.swing.ImageIcon;
 
 /**
@@ -57,12 +58,10 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
 
     private void ridimensionaImmagine() {
         if (imgCorrente != null && jLabel7.getWidth() > 0 && jLabel7.getHeight() > 0) {
-            // Prendiamo la dimensione attuale della JLabel (calcolata dal GridBagLayout)
+            
             int w = jLabel7.getWidth();
             int h = jLabel7.getHeight();
 
-            // --- NUOVO LIMITE MASSIMO PIÙ PICCOLO (es. 250 pixel) ---
-            // Impedisce all'immagine di superare questa grandezza anche su schermi giganti
             if (w > 250) {
                 w = 250;
             }
@@ -70,8 +69,6 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
                 h = 250;
             }
 
-            // --- DIMENSIONE MINIMA (Opzionale, es. 100 pixel) ---
-            // Impedisce all'immagine di sparire se rimpicciolisci troppo la finestra
             if (w < 100) {
                 w = 100;
             }
@@ -79,7 +76,6 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
                 h = 100;
             }
 
-            // Calcolo per mantenere le PROPORZIONI (Aspect Ratio) originali
             double imgW = imgCorrente.getWidth(null);
             double imgH = imgCorrente.getHeight(null);
 
@@ -87,14 +83,11 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
                 double ratioX = (double) w / imgW;
                 double ratioY = (double) h / imgH;
 
-                // Scegliamo il rapporto più piccolo per far stare l'immagine nella cella
                 double ratio = Math.min(ratioX, ratioY);
 
-                // Calcoliamo le dimensioni finali
                 int finalW = (int) (imgW * ratio);
                 int finalH = (int) (imgH * ratio);
 
-                // Evitiamo errori se il calcolo porta a zero
                 if (finalW > 0 && finalH > 0) {
                     Image scalata = imgCorrente.getScaledInstance(finalW, finalH, Image.SCALE_SMOOTH);
                     jLabel7.setIcon(new ImageIcon(scalata));
@@ -242,7 +235,7 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
         }
 
         if (imgSelezionata != null) {
-            // Forza la Label ad essere grande quanto l'immagine che vuoi (es. 300x300)
+            
             int larghezza = 300;
             int altezza = 300;
 
@@ -396,7 +389,11 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
         boolean successo = g.getPokemon().Rinascita(g.getInventario());
 
         if (successo) {
-            // Aggiorna le scritte (Label) con i nuovi valori resettati
+            
+            g.getPokemon().setFame(0);
+            g.getPokemon().setSete(0);
+            g.getPokemon().setVita(g.getPokemon().getVitaMax() / 2);
+            
             jLabel3.setText("" + g.getPokemon().getFame());
             jLabel6.setText("" + g.getPokemon().getSete());
             jLabel5.setText("" + g.getPokemon().getVita());

@@ -6,6 +6,7 @@ package progettopokemon;
 
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 
 /**
  *
@@ -24,7 +25,7 @@ public class InterfacciaInizioGioco extends javax.swing.JFrame {
         jButton1.setContentAreaFilled(false);
         jButton1.setBorderPainted(false);
         jButton1.setFocusPainted(false);
-
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -28,17 +28,17 @@ public class GestoreEvento {
         int probabilita = r.nextInt(100);
 
         if (p instanceof Rowlet) {
-            if (probabilita < 50) {
+            if (probabilita < 60) {
                 return Evento.TROVA_OGGETTO;
-            } else if (probabilita < 75) {
+            } else if (probabilita < 80) {
                 return Evento.TEAM_ROCKET;
             } else {
                 return Evento.POKEMON_SELVATICO;
             }
         } else {
-            if (probabilita < 33) {
+            if (probabilita < 40) {
                 return Evento.TROVA_OGGETTO;
-            } else if (probabilita < 66) {
+            } else if (probabilita < 70) {
                 return Evento.TEAM_ROCKET;
             } else {
                 return Evento.POKEMON_SELVATICO;
@@ -59,7 +59,7 @@ public class GestoreEvento {
 
         case TEAM_ROCKET:
             if (p instanceof Chimchar) {
-                // Se lo scudo è attivo toglie 5, altrimenti 10
+               
                 int danno = ((Chimchar) p).isScudoAttivo() ? 5 : 10;
                 p.setVita(p.getVita() - danno);
             } else {
@@ -69,7 +69,6 @@ public class GestoreEvento {
 
         case POKEMON_SELVATICO:
             if (p instanceof Chimchar) {
-                // Se lo scudo è attivo toglie solo 2, altrimenti 5
                 int danno = ((Chimchar) p).isScudoAttivo() ? 2 : 5;
                 p.setVita(p.getVita() - danno);
             } else {
@@ -77,6 +76,6 @@ public class GestoreEvento {
             }
             break;
     }
-    p.PokemonMorto(); // Controlla se è morto dopo i danni
+    p.PokemonMorto();
 }
 }
