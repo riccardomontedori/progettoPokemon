@@ -32,43 +32,49 @@ public abstract class Pokemon {
     }
 
     public int Bevi(Inventario i) {
-        if (i.usaAcqua()) {
-            this.sete = sete - 10;
-        }
-        if (this.sete < 0) {
-            this.sete = 0;
+        if (this.sete > 0) {
+            if (i.usaAcqua()) {
+                this.sete = sete - 10;
+                if (this.sete < 0) {
+                    this.sete = 0;
+                }
+            }
         }
         return sete;
     }
 
     public int Mangia(Inventario i) {
-        if (i.usaBacca()) {
-            this.fame = fame - 10;
-        }
-        if (this.fame < 0) {
-            this.fame = 0;
+        if (this.fame > 0) {
+            if (i.usaBacca()) {
+                this.fame = fame - 10;
+                if (this.fame < 0) {
+                    this.fame = 0;
+                }
+            }
         }
         return fame;
     }
 
     public int Cura(Inventario i) {
-        if (i.usaPozione()) {
-            this.vita = vita + 20;
-        }
-        if (vita > vitaMax) {
-            this.vita = vitaMax;
+        if (this.vita < this.vitaMax) {
+            if (i.usaPozione()) {
+                this.vita = vita + 20;
+                if (this.vita > vitaMax) {
+                    this.vita = vitaMax;
+                }
+            }
         }
         return vita;
     }
 
     public boolean Rinascita(Inventario i) {
-    
-    if (!this.vivo && i.usaRevitalizzante()) { 
-        this.vivo = true;  
-        return true;
+
+        if (!this.vivo && i.usaRevitalizzante()) {
+            this.vivo = true;
+            return true;
+        }
+        return false;
     }
-    return false;
-}
 
     public int getVita() {
         return vita;

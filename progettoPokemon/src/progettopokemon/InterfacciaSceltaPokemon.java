@@ -41,41 +41,46 @@ public class InterfacciaSceltaPokemon extends javax.swing.JFrame {
 
         this.addComponentListener(new java.awt.event.ComponentAdapter() {
             @Override
-            public void componentResized(java.awt.event.ComponentEvent e) {
-                int w = getContentPane().getWidth();
-                int h = getContentPane().getHeight();
+public void componentResized(java.awt.event.ComponentEvent e) {
+    int w = getContentPane().getWidth();
+    int h = getContentPane().getHeight();
 
-                if (w > 0 && h > 0) {
-                    jLabel1.setBounds(0, 0, w, h);
-                    jLabel1.setIcon(new ImageIcon(imgOriginale.getScaledInstance(w, h, Image.SCALE_SMOOTH)));
+    if (w > 0 && h > 0) {
+        jLabel1.setBounds(0, 0, w, h);
+        jLabel1.setIcon(new ImageIcon(imgOriginale.getScaledInstance(w, h, Image.SCALE_SMOOTH)));
 
-                    int btnW = w / 12;
-                    int btnH = h / 6;
-                    int infoW = w / 10;
-                    int infoH = 30;
+        int btnW = w / 12;      
+        int btnH = h / 6;       
+        int infoW = w / 10;     
+        int infoH = 30;         
 
-                    int yPokemon = (int) (h * 0.30);
-                    int yInfo = yPokemon + btnH + 60;
+        int yPokemon = (int) (h * 0.30);
+        int yInfo = yPokemon + btnH + 60; 
 
-                    int x1 = (int) (w * 0.335);
-                    jButton2.setBounds(x1, yPokemon, btnW, btnH);
-                    aggiornaIconaBottone(jButton2, imgChimchar);
+        
+        int offsetCentratura = (infoW - btnW) / 2;
 
-                    jButton1.setBounds(x1, yInfo, infoW, infoH);
+        
+        int x1 = (int) (w * 0.34); 
+        jButton2.setBounds(x1, yPokemon, btnW, btnH);
+        aggiornaIconaBottone(jButton2, imgChimchar);
+        jButton1.setBounds(x1 - offsetCentratura, yInfo, infoW, infoH);
 
-                    int x2 = (int) (w * 0.46);
-                    jButton3.setBounds(x2, yPokemon, btnW, btnH);
-                    aggiornaIconaBottone(jButton3, imgRowlet);
-                    jButton5.setBounds(x2, yInfo, infoW, infoH);
+        
+        int x2 = (int) (w * 0.46);
+        jButton3.setBounds(x2, yPokemon, btnW, btnH);
+        aggiornaIconaBottone(jButton3, imgRowlet);
+        jButton5.setBounds(x2 - offsetCentratura, yInfo, infoW, infoH);
 
-                    int x3 = (int) (w * 0.585);
-                    jButton4.setBounds(x3, yPokemon, btnW, btnH);
-                    aggiornaIconaBottone(jButton4, imgFroakie);
-                    jButton6.setBounds(x3, yInfo, infoW, infoH);
+        
+        int x3 = (int) (w * 0.58);
+        jButton4.setBounds(x3, yPokemon, btnW, btnH);
+        aggiornaIconaBottone(jButton4, imgFroakie);
+        jButton6.setBounds(x3 - offsetCentratura, yInfo, infoW, infoH);
 
-                    getContentPane().setComponentZOrder(jLabel1, getContentPane().getComponentCount() - 1);
-                }
-            }
+        getContentPane().setComponentZOrder(jLabel1, getContentPane().getComponentCount() - 1);
+    }
+}
         });
 
         jButton2.addActionListener(e -> apriNuovaInterfaccia("Chimchar"));
@@ -168,7 +173,7 @@ public class InterfacciaSceltaPokemon extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(50, 120, 130, 25);
+        jButton1.setBounds(20, 130, 112, 25);
 
         jButton5.setFont(new java.awt.Font("Arial Black", 2, 12)); // NOI18N
         jButton5.setText("Informazioni");
@@ -178,7 +183,7 @@ public class InterfacciaSceltaPokemon extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton5);
-        jButton5.setBounds(150, 130, 112, 25);
+        jButton5.setBounds(20, 100, 112, 25);
 
         jButton6.setFont(new java.awt.Font("Arial Black", 2, 12)); // NOI18N
         jButton6.setText("Informazioni");
@@ -188,7 +193,7 @@ public class InterfacciaSceltaPokemon extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton6);
-        jButton6.setBounds(250, 130, 112, 25);
+        jButton6.setBounds(20, 70, 112, 25);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
