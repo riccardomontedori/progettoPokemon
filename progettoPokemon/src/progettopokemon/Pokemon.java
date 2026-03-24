@@ -17,7 +17,7 @@ public abstract class Pokemon {
     private int vitaMax;
 
     public Pokemon() {
-        this.vitaMax = 35;
+        this.vitaMax = 50;
         this.vita = vitaMax;
         this.fame = 0;
         this.sete = 0;

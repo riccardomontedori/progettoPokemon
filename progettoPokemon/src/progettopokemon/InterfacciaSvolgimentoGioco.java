@@ -58,7 +58,7 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
 
     private void ridimensionaImmagine() {
         if (imgCorrente != null && jLabel7.getWidth() > 0 && jLabel7.getHeight() > 0) {
-            
+
             int w = jLabel7.getWidth();
             int h = jLabel7.getHeight();
 
@@ -96,6 +96,34 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
         }
     }
 
+    private void impostaImmagineEvento(String percorso) {
+        if (percorso == null) {
+            jLabel9.setIcon(null);
+            return;
+        }
+        try {
+            ImageIcon icon = new ImageIcon(percorso);
+            int lblW = jLabel9.getWidth();
+            int lblH = jLabel9.getHeight();
+
+            if (lblW <= 0) {
+                lblW = 250;
+            }
+            if (lblH <= 0) {
+                lblH = 250;
+            }
+
+            double ratio = Math.min((double) lblW / icon.getIconWidth(), (double) lblH / icon.getIconHeight());
+            int finalW = (int) (icon.getIconWidth() * ratio);
+            int finalH = (int) (icon.getIconHeight() * ratio);
+
+            Image img = icon.getImage().getScaledInstance(finalW, finalH, Image.SCALE_SMOOTH);
+            jLabel9.setIcon(new ImageIcon(img));
+        } catch (Exception e) {
+            jLabel9.setIcon(null);
+        }
+    }
+
     private void initComponentsCustom() {
         btnBevi = new javax.swing.JButton("Bevi");
         btnMangia = new javax.swing.JButton("Mangia");
@@ -109,7 +137,7 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel("Sete attuale:");
         jLabel3 = new javax.swing.JLabel("0");
         jLabel4 = new javax.swing.JLabel("Vita attuale:");
-        jLabel5 = new javax.swing.JLabel("35");
+        jLabel5 = new javax.swing.JLabel("" + g.getPokemon().getVita());
         jLabel6 = new javax.swing.JLabel("0");
 
         jLabel7 = new javax.swing.JLabel();
@@ -125,6 +153,15 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
         txtLog.setLineWrap(true);
         jScrollPane1 = new javax.swing.JScrollPane(txtLog);
 
+        // Blocco dimensioni Log
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(10, 10));
+        jScrollPane1.setMinimumSize(new java.awt.Dimension(10, 10));
+
+        jLabel9 = new javax.swing.JLabel();
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setPreferredSize(new java.awt.Dimension(10, 10));
+        jLabel9.setMinimumSize(new java.awt.Dimension(10, 10));
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         javax.swing.JLayeredPane layeredPane = new javax.swing.JLayeredPane();
@@ -138,8 +175,10 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
         c.insets = new java.awt.Insets(10, 10, 10, 10);
         c.fill = java.awt.GridBagConstraints.BOTH;
 
+        // Pannello Stats (Colonna 0)
         javax.swing.JPanel pnlStats = new javax.swing.JPanel(new java.awt.GridLayout(3, 2, 5, 5));
         pnlStats.setOpaque(false);
+        pnlStats.setPreferredSize(new java.awt.Dimension(10, 10)); // Forza il layout a usare weightx
         pnlStats.add(jLabel4);
         pnlStats.add(jLabel5);
         pnlStats.add(jLabel2);
@@ -149,7 +188,7 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
 
         c.gridx = 0;
         c.gridy = 0;
-        c.weightx = 0.3;
+        c.weightx = 0.3; // 30% larghezza
         c.weighty = 0.2;
         contentPanel.add(pnlStats, c);
 
@@ -158,8 +197,10 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
         c.weighty = 0.8;
         contentPanel.add(jLabel7, c);
 
+        // Pannello Bottoni (Colonna 1)
         javax.swing.JPanel pnlBottoni = new javax.swing.JPanel(new java.awt.GridBagLayout());
         pnlBottoni.setOpaque(false);
+        pnlBottoni.setPreferredSize(new java.awt.Dimension(10, 10)); // Forza il layout a usare weightx
         java.awt.GridBagConstraints cb = new java.awt.GridBagConstraints();
         cb.fill = java.awt.GridBagConstraints.HORIZONTAL;
         cb.insets = new java.awt.Insets(5, 5, 5, 5);
@@ -189,15 +230,22 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
         c.gridx = 1;
         c.gridy = 0;
         c.gridheight = 2;
-        c.weightx = 0.3;
+        c.weightx = 0.3; // 30% larghezza
         c.weighty = 1.0;
         contentPanel.add(pnlBottoni, c);
 
+        // Colonna Log e Immagini (Colonna 2)
         c.gridx = 2;
         c.gridy = 0;
-        c.gridheight = 2;
-        c.weightx = 0.4;
+        c.gridheight = 1;
+        c.weightx = 0.4; // 40% larghezza fissa
+        c.weighty = 0.5;
         contentPanel.add(jScrollPane1, c);
+
+        c.gridx = 2;
+        c.gridy = 1;
+        c.weighty = 0.5;
+        contentPanel.add(jLabel9, c);
 
         layeredPane.add(jLabel8, javax.swing.JLayeredPane.DEFAULT_LAYER);
         layeredPane.add(contentPanel, javax.swing.JLayeredPane.PALETTE_LAYER);
@@ -235,7 +283,7 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
         }
 
         if (imgSelezionata != null) {
-            
+
             int larghezza = 300;
             int altezza = 300;
 
@@ -273,6 +321,7 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
         btnAbilità = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -360,7 +409,7 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
         jScrollPane1.setViewportView(txtLog);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(470, 10, 234, 370);
+        jScrollPane1.setBounds(460, 10, 234, 370);
 
         btnAbilità.setText("Usa abilità");
         btnAbilità.addActionListener(new java.awt.event.ActionListener() {
@@ -374,6 +423,10 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
         jLabel7.setBounds(30, 130, 37, 16);
         getContentPane().add(jLabel8);
         jLabel8.setBounds(40, 270, 0, 0);
+
+        jLabel9.setText("jLabel9");
+        getContentPane().add(jLabel9);
+        jLabel9.setBounds(60, 250, 60, 16);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -389,11 +442,11 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
         boolean successo = g.getPokemon().Rinascita(g.getInventario());
 
         if (successo) {
-            
+
             g.getPokemon().setFame(0);
             g.getPokemon().setSete(0);
             g.getPokemon().setVita(g.getPokemon().getVitaMax() / 2);
-            
+
             jLabel3.setText("" + g.getPokemon().getFame());
             jLabel6.setText("" + g.getPokemon().getSete());
             jLabel5.setText("" + g.getPokemon().getVita());
@@ -432,11 +485,41 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
 
         String msg = "";
         if (e == Evento.TROVA_OGGETTO) {
-            msg = "Hai trovato un oggetto!";
+            impostaImmagineEvento(null);
+            String oggetto = g.getGestoreEvento().getUltimoOggettoTrovato();
+        
+        if (oggetto.equals("acqua")) {
+            msg = "Hai trovato una rinfrescante Acqua Fresca!";
+            impostaImmagineEvento("immagine_acqua.png");
+        } else if (oggetto.equals("bacca")) {
+            msg = "Hai trovato una Bacca matura!";
+            impostaImmagineEvento("immagine_bacca.png");
+        } else if (oggetto.equals("pozione")) {
+            msg = "Hai trovato una Pozione curativa!";
+            impostaImmagineEvento("immagine_pozione.png");
+        } else if (oggetto.equals("revitalizzante")) {
+            msg = "Incredibile! Hai trovato un Revitalizzante!";
+            impostaImmagineEvento("immagine_revitalizzante.png");
+        }
         } else if (e == Evento.TEAM_ROCKET) {
+            impostaImmagineEvento(null);
             msg = "Il Team Rocket ti ha attaccato!";
+            impostaImmagineEvento("immagine_team_rocket.png");
         } else {
-            msg = "Un Pokemon selvatico ti ha colpito!";
+            impostaImmagineEvento(null);
+
+            int scelta = (int) (Math.random() * 3) + 1;
+
+            if (scelta == 1) {
+                msg = "Un Bidoof selvatico ti taglia la strada!";
+                impostaImmagineEvento("immagine_pokemon_selvatico2.png");
+            } else if (scelta == 2) {
+                msg = "Dalla foresta sbuca un mightyena, è pronto ad attaccare";
+                impostaImmagineEvento("immagine_pokemon_selvatico.png");
+            } else {
+                msg = "Il cielo trema, compare Palkia, re dello spazio!";
+                impostaImmagineEvento("immagine_pokemon_selvatico3.png");
+            }
         }
 
         txtLog.append("> " + msg + "\n");
@@ -534,6 +617,7 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea txtLog;
     // End of variables declaration//GEN-END:variables

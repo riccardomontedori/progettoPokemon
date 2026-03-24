@@ -15,6 +15,7 @@ public class GestoreEvento {
 
     private ArrayList<Evento> eventi;
     private Random r;
+    private String ultimoOggettoTrovato = "";
 
     public GestoreEvento() {
         this.r = new Random();
@@ -22,6 +23,10 @@ public class GestoreEvento {
         for (Evento e : Evento.values()) {
             eventi.add(e);
         }
+    }
+
+    public String getUltimoOggettoTrovato() {
+        return ultimoOggettoTrovato;
     }
 
     public Evento GeneraEventoCasuale(Pokemon p) {
@@ -51,15 +56,24 @@ public class GestoreEvento {
     switch (e) {
         case TROVA_OGGETTO:
             int scelta = randomOggetto.nextInt(4);
-            if (scelta == 0) i.setN_acqua(i.getN_acqua() + 1);
-            else if (scelta == 1) i.setN_bacche(i.getN_bacche() + 1);
-            else if (scelta == 2) i.setN_pozioni(i.getN_pozioni() + 1);
-            else i.setN_revitalizzanti(i.getN_revitalizzanti() + 1);
+            if (scelta == 0) {
+                i.setN_acqua(i.getN_acqua() + 1);
+                ultimoOggettoTrovato = "acqua";
+            } else if (scelta == 1) {
+                i.setN_bacche(i.getN_bacche() + 1);
+                ultimoOggettoTrovato = "bacca";
+            } else if (scelta == 2) {
+                i.setN_pozioni(i.getN_pozioni() + 1);
+                ultimoOggettoTrovato = "pozione";
+            } else {
+                i.setN_revitalizzanti(i.getN_revitalizzanti() + 1);
+                ultimoOggettoTrovato = "revitalizzante";
+            }
             break;
 
         case TEAM_ROCKET:
+            ultimoOggettoTrovato = "team_rocket";
             if (p instanceof Chimchar) {
-               
                 int danno = ((Chimchar) p).isScudoAttivo() ? 5 : 10;
                 p.setVita(p.getVita() - danno);
             } else {
@@ -68,6 +82,7 @@ public class GestoreEvento {
             break;
 
         case POKEMON_SELVATICO:
+            ultimoOggettoTrovato = "selvatico";
             if (p instanceof Chimchar) {
                 int danno = ((Chimchar) p).isScudoAttivo() ? 2 : 5;
                 p.setVita(p.getVita() - danno);
