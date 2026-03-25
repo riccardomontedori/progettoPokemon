@@ -511,13 +511,20 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
             int scelta = (int) (Math.random() * 3) + 1;
 
             if (scelta == 1) {
-                msg = "Un Bidoof selvatico ti taglia la strada!";
+                g.getInventario().setN_bacche(g.getInventario().getN_bacche() - 1);
+                msg = "Un Bidoof selvatico ti taglia la strada! Ti ruba una bacca e per farlo di reca del danno";
                 impostaImmagineEvento("immagine_pokemon_selvatico2.png");
             } else if (scelta == 2) {
-                msg = "Dalla foresta sbuca un mightyena, è pronto ad attaccare";
+                msg = "Dalla foresta sbuca un mightyena, ha i suoi cuccioli li accanto e per difenderli è pronto ad attaccare, lo scontro fa aumentare la tua sete e fame oltre a i danni";
                 impostaImmagineEvento("immagine_pokemon_selvatico.png");
+                g.getPokemon().setFame(g.getPokemon().getFame() + 5);
+                g.getPokemon().setSete(g.getPokemon().getSete() + 5);
             } else {
-                msg = "Il cielo trema, compare Palkia, re dello spazio!";
+                msg = "Il cielo trema, compare Palkia, re dello spazio! Non penso gradisca, vedendo che è in scontro con giratina gli lasci il tuo inventario";
+                g.getInventario().setN_bacche(0);
+                g.getInventario().setN_acqua(0);
+                g.getInventario().setN_pozioni(0);
+                g.getInventario().setN_revitalizzanti(0);
                 impostaImmagineEvento("immagine_pokemon_selvatico3.png");
             }
         }
