@@ -520,7 +520,7 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
                 g.getPokemon().setFame(g.getPokemon().getFame() + 5);
                 g.getPokemon().setSete(g.getPokemon().getSete() + 5);
             } else {
-                msg = "Il cielo trema, compare Palkia, re dello spazio! Non penso gradisca, vedendo che è in scontro con giratina gli lasci il tuo inventario";
+                msg = "Il cielo trema, compare Palkia, re dello spazio! Non penso gradisca, vedendo che è in scontro con Giratina per il bene dello spazio e del tempo gli lasci il tuo inventario";
                 g.getInventario().setN_bacche(0);
                 g.getInventario().setN_acqua(0);
                 g.getInventario().setN_pozioni(0);
