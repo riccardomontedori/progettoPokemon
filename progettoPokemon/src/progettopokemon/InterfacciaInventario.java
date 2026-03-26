@@ -4,12 +4,15 @@
  */
 package progettopokemon;
 
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author montedori.riccardo
  */
 public class InterfacciaInventario extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(InterfacciaInventario.class.getName());
 
     /**
@@ -17,22 +20,87 @@ public class InterfacciaInventario extends javax.swing.JFrame {
      */
     Inventario i;
     Gestore g;
+    private Image imgInventario = new ImageIcon("immagine_inventario.png").getImage();
+
     public InterfacciaInventario(Gestore g) {
         this.g = g;
         initComponents();
+        btnChiudiInventario.setOpaque(false);
+        btnChiudiInventario.setContentAreaFilled(false);
+        btnChiudiInventario.setBorderPainted(true); // Lasciamo il bordo sottile per far capire che è un tasto
+        btnChiudiInventario.setFocusPainted(false);
+
+// 2. Imposta lo stesso colore verde delle label (153, 255, 51)
+        btnChiudiInventario.setForeground(new java.awt.Color(153, 255, 51));
+
+// 3. (Opzionale) Cambia il font per farlo uguale agli altri
+        btnChiudiInventario.setFont(new java.awt.Font("SimSun-ExtB", 1, 14));
+        // Imposta il layout null per gestire manualmente lo sfondo se necessario
+        getContentPane().setLayout(null);
+
+        this.addComponentListener(new java.awt.event.ComponentAdapter() {
+            @Override
+            public void componentResized(java.awt.event.ComponentEvent e) {
+                int w = getContentPane().getWidth();
+                int h = getContentPane().getHeight();
+
+                if (w > 0 && h > 0) {
+                    // --- GESTIONE SFONDO ---
+                    java.net.URL imgURL = getClass().getResource("immagine_inventario.png");
+                    ImageIcon icona = (imgURL != null) ? new ImageIcon(imgURL) : new ImageIcon("immagine_inventario.png");
+
+                    if (icona.getImage() != null) {
+                        Image imgRiscalata = icona.getImage().getScaledInstance(w, h, Image.SCALE_SMOOTH);
+                        jLabel6.setIcon(new ImageIcon(imgRiscalata));
+                        jLabel6.setText("");
+                        jLabel6.setBounds(0, 0, w, h);
+                    }
+
+                    // --- POSIZIONAMENTO CENTRALE ---
+                    // Calcoliamo un margine sinistro per centrare il blocco delle scritte
+                    int centroX = (w / 2) - 100; // Spostiamo l'inizio del testo verso il centro
+                    int colonnaNumeriX = centroX + 160; // I numeri appariranno a destra del testo
+
+                    // Titolo "INVENTARIO" centrato
+                    jLabel5.setBounds((w - 150) / 2, 30, 150, 32);
+
+                    // Righe dell'inventario (Testo e Numero affiancati)
+                    jLabel1.setBounds(centroX, 100, 150, 14);  // Pozioni
+                    jLabel12.setBounds(colonnaNumeriX, 100, 50, 14);
+
+                    jLabel2.setBounds(centroX, 130, 150, 14);  // Bacche
+                    jLabel11.setBounds(colonnaNumeriX, 130, 50, 14);
+
+                    jLabel3.setBounds(centroX, 160, 150, 14);  // Acque
+                    jLabel9.setBounds(colonnaNumeriX, 160, 50, 14);
+
+                    jLabel4.setBounds(centroX, 190, 180, 14);  // Revitalizzanti
+                    jLabel10.setBounds(colonnaNumeriX, 190, 50, 14);
+
+                    // Bottone "Chiudi" centrato in basso
+                    int btnW = 200; // Aumentato da 180 a 200
+                    int btnH = 30;
+                    int btnX = (w - btnW) / 2;
+                    int btnY = h - 70; // Alzato leggermente dal bordo inferior
+                    btnChiudiInventario.setBounds((w - btnW) / 2, h - 70, btnW, btnH);
+                    // Assicura che lo sfondo resti dietro
+                    getContentPane().setComponentZOrder(jLabel6, getContentPane().getComponentCount() - 1);
+                }
+            }
+        });
+
         g.getInventario();
         aggiornaDati();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
-    
-    public void aggiornaDati(){
+
+    public void aggiornaDati() {
         jLabel12.setText("" + g.getInventario().getN_pozioni());
         jLabel11.setText("" + g.getInventario().getN_bacche());
         jLabel9.setText("" + g.getInventario().getN_acqua());
         jLabel10.setText("" + g.getInventario().getN_revitalizzanti());
     }
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -52,25 +120,34 @@ public class InterfacciaInventario extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("SimSun-ExtB", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("SimSun-ExtB", 1, 16)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(153, 255, 51));
         jLabel1.setText("Numero Pozioni:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 120, -1));
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(10, 80, 120, 17);
 
-        jLabel2.setFont(new java.awt.Font("SimSun-ExtB", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("SimSun-ExtB", 1, 16)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(153, 255, 51));
         jLabel2.setText("Numero Bacche:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 130, -1));
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(10, 110, 130, 17);
 
-        jLabel3.setFont(new java.awt.Font("SimSun-ExtB", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("SimSun-ExtB", 1, 16)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(153, 255, 51));
         jLabel3.setText("Numero Acquee:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 120, -1));
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(10, 140, 120, 17);
 
-        jLabel4.setFont(new java.awt.Font("SimSun-ExtB", 1, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("SimSun-ExtB", 1, 16)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(153, 255, 51));
         jLabel4.setText("Numero Revitalizzanti:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 180, -1));
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(10, 170, 180, 17);
 
         btnChiudiInventario.setText("Chiudi Inventario");
         btnChiudiInventario.addActionListener(new java.awt.event.ActionListener() {
@@ -78,27 +155,40 @@ public class InterfacciaInventario extends javax.swing.JFrame {
                 btnChiudiInventarioActionPerformed(evt);
             }
         });
-        getContentPane().add(btnChiudiInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 250, -1, -1));
+        getContentPane().add(btnChiudiInventario);
+        btnChiudiInventario.setBounds(250, 250, 130, 23);
 
-        jLabel9.setFont(new java.awt.Font("SimSun-ExtB", 1, 14)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("SimSun-ExtB", 1, 16)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(153, 255, 51));
         jLabel9.setText("0");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 100, -1));
+        getContentPane().add(jLabel9);
+        jLabel9.setBounds(130, 140, 100, 17);
 
-        jLabel10.setFont(new java.awt.Font("SimSun-ExtB", 1, 14)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("SimSun-ExtB", 1, 16)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(153, 255, 51));
         jLabel10.setText("0");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, 130, -1));
+        getContentPane().add(jLabel10);
+        jLabel10.setBounds(190, 170, 130, 17);
 
-        jLabel11.setFont(new java.awt.Font("SimSun-ExtB", 1, 14)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("SimSun-ExtB", 1, 16)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(153, 255, 51));
         jLabel11.setText("0");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 100, -1));
+        getContentPane().add(jLabel11);
+        jLabel11.setBounds(130, 110, 100, 17);
 
-        jLabel12.setFont(new java.awt.Font("SimSun-ExtB", 1, 14)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("SimSun-ExtB", 1, 16)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(153, 255, 51));
         jLabel12.setText("0");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 100, -1));
+        getContentPane().add(jLabel12);
+        jLabel12.setBounds(140, 80, 100, 17);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI Symbol", 3, 24)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(153, 255, 51));
         jLabel5.setText("INVENTARIO");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 150, -1));
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(120, 20, 150, 32);
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(90, 240, 0, 0);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -143,6 +233,7 @@ public class InterfacciaInventario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel9;
     // End of variables declaration//GEN-END:variables
 }
