@@ -15,6 +15,9 @@ public abstract class Pokemon {
     private int fame;
     private int vita;
     private int vitaMax;
+    protected String nome;
+    protected int turniInCampo = 0;
+    protected int stadio = 0;
 
     public Pokemon() {
         this.vitaMax = 50;
@@ -68,7 +71,6 @@ public abstract class Pokemon {
     }
 
     public boolean Rinascita(Inventario i) {
-
         if (!this.vivo && i.usaRevitalizzante()) {
             this.vivo = true;
             return true;
@@ -112,13 +114,32 @@ public abstract class Pokemon {
         this.vivo = vivo;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public int getTurniInCampo() {
+        return turniInCampo;
+    }
+
+    public int getStadio() {
+        return stadio;
+    }
+
+    public void resetTurniInCampo() {
+        this.turniInCampo = 0;
+    }
+
     public abstract int usaAbilita();
 
     public abstract void abilitaPassiva();
 
+    public abstract void eseguiEvoluzione();
+
     public void subisciTurno() {
         this.fame += 10;
         this.sete += 10;
+        this.turniInCampo++;
         this.abilitaPassiva();
     }
 }

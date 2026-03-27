@@ -48,6 +48,33 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
             }
         });
     }
+    
+    private void aggiornaGrafica() {
+    Pokemon p = g.getPokemon();
+
+    // Aggiornamento Label Statistiche
+    jLabel5.setText("" + p.getVita());
+    jLabel6.setText("" + p.getSete());
+    jLabel3.setText("" + p.getFame());
+
+    // Gestione Bottone Evoluzione
+    if (p.getTurniInCampo() >= 3 && p.getStadio() < 2) {
+        btnEvolvi.setEnabled(true);
+        btnEvolvi.setText("EVOLVI!");
+    } else {
+        btnEvolvi.setEnabled(false);
+        if (p.getStadio() >= 2) {
+            btnEvolvi.setText("Stadio Finale");
+        } else {
+            btnEvolvi.setText("Evo tra: " + (3 - p.getTurniInCampo()) + " t");
+        }
+    }
+
+    // Aggiornamento Immagine dinamico
+    String nomeFile = "immagine_" + p.getNome().toLowerCase() + ".png";
+    imgCorrente = new ImageIcon(nomeFile).getImage();
+    ridimensionaImmagine();
+}
 
     private void ridimensionaSfondo() {
         if (imgSfondo != null && jLabel8.getWidth() > 0 && jLabel8.getHeight() > 0) {
@@ -132,6 +159,8 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
         btnEsplora = new javax.swing.JButton("Esplora");
         btnInventario = new javax.swing.JButton("Apri Inventario");
         btnAbilità = new javax.swing.JButton("Usa abilità");
+        btnEvolvi = new javax.swing.JButton("Evolvi Pokémon");
+        btnEvolvi.setEnabled(false);
 
         jLabel1 = new javax.swing.JLabel("Fame attuale:");
         jLabel2 = new javax.swing.JLabel("Sete attuale:");
@@ -152,8 +181,6 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
         txtLog.setColumns(20);
         txtLog.setLineWrap(true);
         jScrollPane1 = new javax.swing.JScrollPane(txtLog);
-
-        // Blocco dimensioni Log
         jScrollPane1.setPreferredSize(new java.awt.Dimension(10, 10));
         jScrollPane1.setMinimumSize(new java.awt.Dimension(10, 10));
 
@@ -175,10 +202,9 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
         c.insets = new java.awt.Insets(10, 10, 10, 10);
         c.fill = java.awt.GridBagConstraints.BOTH;
 
-        // Pannello Stats (Colonna 0)
         javax.swing.JPanel pnlStats = new javax.swing.JPanel(new java.awt.GridLayout(3, 2, 5, 5));
         pnlStats.setOpaque(false);
-        pnlStats.setPreferredSize(new java.awt.Dimension(10, 10)); // Forza il layout a usare weightx
+        pnlStats.setPreferredSize(new java.awt.Dimension(10, 10));
         pnlStats.add(jLabel4);
         pnlStats.add(jLabel5);
         pnlStats.add(jLabel2);
@@ -188,7 +214,7 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
 
         c.gridx = 0;
         c.gridy = 0;
-        c.weightx = 0.3; // 30% larghezza
+        c.weightx = 0.3;
         c.weighty = 0.2;
         contentPanel.add(pnlStats, c);
 
@@ -197,10 +223,9 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
         c.weighty = 0.8;
         contentPanel.add(jLabel7, c);
 
-        // Pannello Bottoni (Colonna 1)
         javax.swing.JPanel pnlBottoni = new javax.swing.JPanel(new java.awt.GridBagLayout());
         pnlBottoni.setOpaque(false);
-        pnlBottoni.setPreferredSize(new java.awt.Dimension(10, 10)); // Forza il layout a usare weightx
+        pnlBottoni.setPreferredSize(new java.awt.Dimension(10, 10));
         java.awt.GridBagConstraints cb = new java.awt.GridBagConstraints();
         cb.fill = java.awt.GridBagConstraints.HORIZONTAL;
         cb.insets = new java.awt.Insets(5, 5, 5, 5);
@@ -216,29 +241,32 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
         pnlBottoni.add(btnBevi, cb);
         cb.gridx = 1;
         pnlBottoni.add(btnRinasci, cb);
+        
         cb.gridx = 0;
         cb.gridy = 2;
         cb.gridwidth = 2;
         pnlBottoni.add(btnAbilità, cb);
-        cb.gridx = 0;
+        
         cb.gridy = 3;
         pnlBottoni.add(btnEsplora, cb);
-        cb.gridx = 0;
+        
         cb.gridy = 4;
         pnlBottoni.add(btnInventario, cb);
+
+        cb.gridy = 5;
+        pnlBottoni.add(btnEvolvi, cb);
 
         c.gridx = 1;
         c.gridy = 0;
         c.gridheight = 2;
-        c.weightx = 0.3; // 30% larghezza
+        c.weightx = 0.3;
         c.weighty = 1.0;
         contentPanel.add(pnlBottoni, c);
 
-        // Colonna Log e Immagini (Colonna 2)
         c.gridx = 2;
         c.gridy = 0;
         c.gridheight = 1;
-        c.weightx = 0.4; // 40% larghezza fissa
+        c.weightx = 0.4;
         c.weighty = 0.5;
         contentPanel.add(jScrollPane1, c);
 
@@ -267,6 +295,7 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
         btnRinasci.addActionListener(this::btnRinasciActionPerformed);
         btnAbilità.addActionListener(this::btnAbilitàActionPerformed);
         btnInventario.addActionListener(this::btnInventarioActionPerformed);
+        btnEvolvi.addActionListener(this::btnEvolviActionPerformed);
 
         pack();
     }
@@ -322,6 +351,7 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        btnEvolvi = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -427,6 +457,15 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
         jLabel9.setText("jLabel9");
         getContentPane().add(jLabel9);
         jLabel9.setBounds(60, 250, 60, 16);
+
+        btnEvolvi.setText("Evolvi pokemon");
+        btnEvolvi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEvolviActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnEvolvi);
+        btnEvolvi.setBounds(140, 340, 130, 23);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -553,6 +592,7 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
                 txtLog.append("> Non hai Revitalizzanti! Game Over.\n");
             }
         }
+        aggiornaGrafica();
     }//GEN-LAST:event_btnEsploraActionPerformed
 
     private void btnInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventarioActionPerformed
@@ -582,6 +622,18 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
 
         btnAbilità.setEnabled(false);
     }//GEN-LAST:event_btnAbilitàActionPerformed
+
+    private void btnEvolviActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEvolviActionPerformed
+        // TODO add your handling code here:
+        String nomeVecchio = g.getPokemon().getNome();
+    g.eseguiEvoluzione();
+    String nomeNuovo = g.getPokemon().getNome();
+    
+    txtLog.append("> " + nomeVecchio + " si sta evolvendo...\n");
+    txtLog.append("> Incredibile! Si è evoluto in " + nomeNuovo + "!\n");
+    
+    aggiornaGrafica();
+    }//GEN-LAST:event_btnEvolviActionPerformed
 
     /**
      * @param args the command line arguments
@@ -613,6 +665,7 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
     private javax.swing.JButton btnBevi;
     private javax.swing.JButton btnCura;
     private javax.swing.JButton btnEsplora;
+    private javax.swing.JButton btnEvolvi;
     private javax.swing.JButton btnInventario;
     private javax.swing.JButton btnMangia;
     private javax.swing.JButton btnRinasci;

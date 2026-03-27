@@ -23,16 +23,24 @@ public class Gestore {
     }
 
     public void prossimoTurno() {
-        turni++;
-        p.subisciTurno();
-        Evento evento = ge.GeneraEventoCasuale(p);
-        ge.ApplicaEvento(evento, p, i);
+        if (p.isVivo()) {
+            turni++;
+            p.subisciTurno(); 
+            Evento evento = ge.GeneraEventoCasuale(p);
+            ge.ApplicaEvento(evento, p, i);
+        }
+    }
+
+    public void eseguiEvoluzione() {
+        
+        if (p.getTurniInCampo() >= 3 && p.getStadio() < 2) {
+            p.eseguiEvoluzione(); 
+            p.resetTurniInCampo(); 
+        }
     }
 
     public void usaTattica() {
-        if (p instanceof Chimchar) {
-            p.usaAbilita();
-        } else if (p instanceof Rowlet) {
+        if (p instanceof Chimchar || p instanceof Rowlet) {
             p.usaAbilita();
         } else if (p instanceof Froakie) {
             p.setFame(0);

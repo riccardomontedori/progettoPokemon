@@ -11,12 +11,13 @@ package progettopokemon;
 public class Rowlet extends Pokemon {
 
     public Rowlet() {
-
+        super();
+        this.nome = "Rowlet";
     }
 
     @Override
     public void abilitaPassiva() {
-
+        
     }
 
     @Override
@@ -26,5 +27,21 @@ public class Rowlet extends Pokemon {
             setVita(getVitaMax());
         }
         return getVita();
+    }
+
+    @Override
+    public void eseguiEvoluzione() {
+        if (this.stadio == 0) {
+            this.nome = "Dartrix";
+            this.stadio = 1;
+        } else if (this.stadio == 1) {
+            this.nome = "Decidueye";
+            this.stadio = 2;
+        }
+        int nuovaVita = getVita() + 10;
+        if (nuovaVita > getVitaMax()) {
+            nuovaVita = getVitaMax();
+        }
+        setVita(nuovaVita);
     }
 }

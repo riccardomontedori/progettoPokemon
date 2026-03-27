@@ -8,16 +8,17 @@ package progettopokemon;
  *
  * @author montedori.riccardo
  */
-public class Chimchar extends Pokemon{
+public class Chimchar extends Pokemon {
     private boolean scudoFiammeggiante = false;
 
     public Chimchar() {
-        
+        super();
+        this.nome = "Chimchar";
     }
 
     @Override
     public void abilitaPassiva() {
-        
+       
     }
 
     @Override
@@ -28,6 +29,23 @@ public class Chimchar extends Pokemon{
     
     public boolean isScudoAttivo() {
         return scudoFiammeggiante;
+    }
+
+    @Override
+    public void eseguiEvoluzione() {
+        if (this.stadio == 0) {
+            this.nome = "Monferno";
+            this.stadio = 1;
+        } else if (this.stadio == 1) {
+            this.nome = "Infernape";
+            this.stadio = 2;
+        }
+
+        int nuovaVita = getVita() + 10;
+        if (nuovaVita > getVitaMax()) {
+            nuovaVita = getVitaMax();
+        }
+        setVita(nuovaVita);
     }
 }
 
