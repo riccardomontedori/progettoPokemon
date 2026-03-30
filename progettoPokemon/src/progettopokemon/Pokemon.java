@@ -8,7 +8,7 @@ package progettopokemon;
  *
  * @author montedori.riccardo
  */
-public abstract class Pokemon {
+public abstract class Pokemon implements java.io.Serializable {
 
     private boolean vivo;
     private int sete;
@@ -117,13 +117,25 @@ public abstract class Pokemon {
     public String getNome() {
         return nome;
     }
+    
+    public void setNome(String nome){
+        this.nome = nome;
+    }
 
     public int getTurniInCampo() {
         return turniInCampo;
     }
 
+    public void setTurniInCampo(int turniInCampo) {
+        this.turniInCampo = turniInCampo;
+    }
+
     public int getStadio() {
         return stadio;
+    }
+
+    public void setStadio(int stadio) {
+        this.stadio = stadio;
     }
 
     public void resetTurniInCampo() {

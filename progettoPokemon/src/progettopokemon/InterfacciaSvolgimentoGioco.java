@@ -52,12 +52,12 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
     private void aggiornaGrafica() {
     Pokemon p = g.getPokemon();
 
-    // Aggiornamento Label Statistiche
+    
     jLabel5.setText("" + p.getVita());
     jLabel6.setText("" + p.getSete());
     jLabel3.setText("" + p.getFame());
 
-    // Gestione Bottone Evoluzione
+   
     if (p.getTurniInCampo() >= 3 && p.getStadio() < 2) {
         btnEvolvi.setEnabled(true);
         btnEvolvi.setText("EVOLVI!");
@@ -70,7 +70,7 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
         }
     }
 
-    // Aggiornamento Immagine dinamico
+    
     String nomeFile = "immagine_" + p.getNome().toLowerCase() + ".png";
     imgCorrente = new ImageIcon(nomeFile).getImage();
     ridimensionaImmagine();

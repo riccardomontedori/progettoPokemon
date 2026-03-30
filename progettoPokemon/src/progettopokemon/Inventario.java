@@ -8,7 +8,7 @@ package progettopokemon;
  *
  * @author montedori.riccardo
  */
-public class Inventario {
+public class Inventario implements java.io.Serializable{
 
     private int n_pozioni;
     private int n_revitalizzanti;

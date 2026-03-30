@@ -41,46 +41,42 @@ public class InterfacciaSceltaPokemon extends javax.swing.JFrame {
 
         this.addComponentListener(new java.awt.event.ComponentAdapter() {
             @Override
-public void componentResized(java.awt.event.ComponentEvent e) {
-    int w = getContentPane().getWidth();
-    int h = getContentPane().getHeight();
+            public void componentResized(java.awt.event.ComponentEvent e) {
+                int w = getContentPane().getWidth();
+                int h = getContentPane().getHeight();
 
-    if (w > 0 && h > 0) {
-        jLabel1.setBounds(0, 0, w, h);
-        jLabel1.setIcon(new ImageIcon(imgOriginale.getScaledInstance(w, h, Image.SCALE_SMOOTH)));
+                if (w > 0 && h > 0) {
+                    jLabel1.setBounds(0, 0, w, h);
+                    jLabel1.setIcon(new ImageIcon(imgOriginale.getScaledInstance(w, h, Image.SCALE_SMOOTH)));
 
-        int btnW = w / 12;      
-        int btnH = h / 6;       
-        int infoW = w / 10;     
-        int infoH = 30;         
+                    int btnW = w / 12;
+                    int btnH = h / 6;
+                    int infoW = w / 10;
+                    int infoH = 30;
 
-        int yPokemon = (int) (h * 0.30);
-        int yInfo = yPokemon + btnH + 60; 
+                    int yPokemon = (int) (h * 0.30);
+                    int yInfo = yPokemon + btnH + 60;
 
-        
-        int offsetCentratura = (infoW - btnW) / 2;
+                    int offsetCentratura = (infoW - btnW) / 2;
 
-        
-        int x1 = (int) (w * 0.34); 
-        jButton2.setBounds(x1, yPokemon, btnW, btnH);
-        aggiornaIconaBottone(jButton2, imgChimchar);
-        jButton1.setBounds(x1 - offsetCentratura, yInfo, infoW, infoH);
+                    int x1 = (int) (w * 0.34);
+                    jButton2.setBounds(x1, yPokemon, btnW, btnH);
+                    aggiornaIconaBottone(jButton2, imgChimchar);
+                    jButton1.setBounds(x1 - offsetCentratura, yInfo, infoW, infoH);
 
-        
-        int x2 = (int) (w * 0.46);
-        jButton3.setBounds(x2, yPokemon, btnW, btnH);
-        aggiornaIconaBottone(jButton3, imgRowlet);
-        jButton5.setBounds(x2 - offsetCentratura, yInfo, infoW, infoH);
+                    int x2 = (int) (w * 0.46);
+                    jButton3.setBounds(x2, yPokemon, btnW, btnH);
+                    aggiornaIconaBottone(jButton3, imgRowlet);
+                    jButton5.setBounds(x2 - offsetCentratura, yInfo, infoW, infoH);
 
-        
-        int x3 = (int) (w * 0.58);
-        jButton4.setBounds(x3, yPokemon, btnW, btnH);
-        aggiornaIconaBottone(jButton4, imgFroakie);
-        jButton6.setBounds(x3 - offsetCentratura, yInfo, infoW, infoH);
+                    int x3 = (int) (w * 0.58);
+                    jButton4.setBounds(x3, yPokemon, btnW, btnH);
+                    aggiornaIconaBottone(jButton4, imgFroakie);
+                    jButton6.setBounds(x3 - offsetCentratura, yInfo, infoW, infoH);
 
-        getContentPane().setComponentZOrder(jLabel1, getContentPane().getComponentCount() - 1);
-    }
-}
+                    getContentPane().setComponentZOrder(jLabel1, getContentPane().getComponentCount() - 1);
+                }
+            }
         });
 
         jButton2.addActionListener(e -> apriNuovaInterfaccia("Chimchar"));
@@ -111,17 +107,17 @@ public void componentResized(java.awt.event.ComponentEvent e) {
         nuovaSchermata.setVisible(true);
         this.dispose();
     }
-    
+
     private void mostraMessaggioStretto(String testo) {
-    javax.swing.JTextArea area = new javax.swing.JTextArea(testo);
-    area.setColumns(30);           // Qui decidi la larghezza (30 caratteri)
-    area.setLineWrap(true);        // Attiva l'andata a capo
-    area.setWrapStyleWord(true);   // Non taglia le parole a metà
-    area.setEditable(false);       // Non fa scrivere l'utente
-    area.setBackground(new java.awt.Color(0,0,0,0)); // Sfondo trasparente
-    
-    JOptionPane.showMessageDialog(this, area, "Pokedex", JOptionPane.INFORMATION_MESSAGE);
-}
+        javax.swing.JTextArea area = new javax.swing.JTextArea(testo);
+        area.setColumns(30);           // Qui decidi la larghezza (30 caratteri)
+        area.setLineWrap(true);        // Attiva l'andata a capo
+        area.setWrapStyleWord(true);   // Non taglia le parole a metà
+        area.setEditable(false);       // Non fa scrivere l'utente
+        area.setBackground(new java.awt.Color(0, 0, 0, 0)); // Sfondo trasparente
+
+        JOptionPane.showMessageDialog(this, area, "Pokedex", JOptionPane.INFORMATION_MESSAGE);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -201,53 +197,53 @@ public void componentResized(java.awt.event.ComponentEvent e) {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         String msg = "Pokémon di tipo Erba/Volante. Silenzioso e attento, attacca senza fare rumore grazie alle sue ali morbide. Di giorno usa la fotosintesi per accumulare energia.\n\n"
-               + "ABILITÀ PASSIVA: Possibilità più alta di trovare oggetti utili.\n"
-               + "ABILITÀ TATTICA: Cura il pokemon di 15 punti vita.";
-    
-    javax.swing.JTextArea area = new javax.swing.JTextArea(msg);
-    area.setColumns(35);         
-    area.setRows(6);            
-    area.setLineWrap(true);
-    area.setWrapStyleWord(true);
-    area.setEditable(false);
-    area.setOpaque(false);
-    area.setBorder(null);    
+                + "ABILITÀ PASSIVA: Possibilità più alta di trovare oggetti utili.\n"
+                + "ABILITÀ TATTICA: Cura il pokemon di 15 punti vita.";
 
-    JOptionPane.showMessageDialog(this, area, "Pokedex - Rowlet", JOptionPane.INFORMATION_MESSAGE);
+        javax.swing.JTextArea area = new javax.swing.JTextArea(msg);
+        area.setColumns(35);
+        area.setRows(6);
+        area.setLineWrap(true);
+        area.setWrapStyleWord(true);
+        area.setEditable(false);
+        area.setOpaque(false);
+        area.setBorder(null);
+
+        JOptionPane.showMessageDialog(this, area, "Pokedex - Rowlet", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String msg = "Pokémon di tipo Fuoco. Vivace e agile, ha una fiamma sempre accesa sulla coda che indica il suo stato emotivo. Più è forte, più la fiamma arde intensamente.\n\n"
-               + "ABILITÀ PASSIVA: Subisce meno danni dagli incontri.\n"
-               + "ABILITÀ TATTICA: Diminuisce del 50% i danni subiti.";
-    
-    javax.swing.JTextArea area = new javax.swing.JTextArea(msg);
-    area.setColumns(35);
-    area.setRows(6);
-    area.setLineWrap(true);
-    area.setWrapStyleWord(true);
-    area.setEditable(false);
-    area.setOpaque(false);
+                + "ABILITÀ PASSIVA: Subisce meno danni dagli incontri.\n"
+                + "ABILITÀ TATTICA: Diminuisce del 50% i danni subiti.";
 
-    JOptionPane.showMessageDialog(this, area, "Pokedex - Chimchar", JOptionPane.INFORMATION_MESSAGE);
+        javax.swing.JTextArea area = new javax.swing.JTextArea(msg);
+        area.setColumns(35);
+        area.setRows(6);
+        area.setLineWrap(true);
+        area.setWrapStyleWord(true);
+        area.setEditable(false);
+        area.setOpaque(false);
+
+        JOptionPane.showMessageDialog(this, area, "Pokedex - Chimchar", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
         String msg = "Pokémon di tipo Acqua. Produce bolle protettive intorno al collo e alla schiena che ammortizzano gli attacchi. È rapido e ama saltare con grande agilità.\n\n"
-               + "ABILITÀ PASSIVA: La sete e la fame salgono più lentamente.\n"
-               + "ABILITÀ TATTICA: La sete e la fame tornano a 0.";
-    
-    javax.swing.JTextArea area = new javax.swing.JTextArea(msg);
-    area.setColumns(35);
-    area.setRows(6);
-    area.setLineWrap(true);
-    area.setWrapStyleWord(true);
-    area.setEditable(false);
-    area.setOpaque(false);
+                + "ABILITÀ PASSIVA: La sete e la fame salgono più lentamente.\n"
+                + "ABILITÀ TATTICA: La sete e la fame tornano a 0.";
 
-    JOptionPane.showMessageDialog(this, area, "Pokedex - Froakie", JOptionPane.INFORMATION_MESSAGE);
+        javax.swing.JTextArea area = new javax.swing.JTextArea(msg);
+        area.setColumns(35);
+        area.setRows(6);
+        area.setLineWrap(true);
+        area.setWrapStyleWord(true);
+        area.setEditable(false);
+        area.setOpaque(false);
+
+        JOptionPane.showMessageDialog(this, area, "Pokedex - Froakie", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     /**

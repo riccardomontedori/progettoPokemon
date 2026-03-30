@@ -11,7 +11,7 @@ package progettopokemon;
 import java.util.Random;
 import java.util.ArrayList;
 
-public class GestoreEvento {
+public class GestoreEvento implements java.io.Serializable{
 
     private ArrayList<Evento> eventi;
     private Random r;

@@ -8,7 +8,7 @@ package progettopokemon;
  *
  * @author montedori.riccardo
  */
-public class Gestore {
+public class Gestore implements java.io.Serializable {
 
     private Pokemon p;
     private Inventario i;
