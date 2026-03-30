@@ -74,8 +74,8 @@ public class InterfacciaInventario extends javax.swing.JFrame {
                     jLabel3.setBounds(centroX, 160, 150, 14);  // Acque
                     jLabel9.setBounds(colonnaNumeriX, 160, 50, 14);
 
-                    jLabel4.setBounds(centroX, 190, 180, 14);  // Revitalizzanti
-                    jLabel10.setBounds(colonnaNumeriX, 190, 50, 14);
+                    jLabel4.setBounds(centroX, 190, 220, 20);  // Revitalizzanti
+                    jLabel10.setBounds(colonnaNumeriX, 190, 50, 20);
 
                     // Bottone "Chiudi" centrato in basso
                     int btnW = 200; // Aumentato da 180 a 200
@@ -145,7 +145,7 @@ public class InterfacciaInventario extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("SimSun-ExtB", 1, 16)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(153, 255, 51));
-        jLabel4.setText("Numero Revitalizzanti:");
+        jLabel4.setText("Numero Pepite:");
         getContentPane().add(jLabel4);
         jLabel4.setBounds(10, 170, 180, 17);
 

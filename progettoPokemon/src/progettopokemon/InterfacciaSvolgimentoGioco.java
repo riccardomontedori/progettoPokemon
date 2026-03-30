@@ -52,13 +52,26 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
     private void aggiornaGrafica() {
     Pokemon p = g.getPokemon();
 
-    
     jLabel5.setText("" + p.getVita());
     jLabel6.setText("" + p.getSete());
     jLabel3.setText("" + p.getFame());
 
-   
-    if (p.getTurniInCampo() >= 3 && p.getStadio() < 2) {
+    boolean vivo = !p.PokemonMorto();
+
+    btnMangia.setEnabled(vivo);
+    btnBevi.setEnabled(vivo);
+    btnCura.setEnabled(vivo);
+    btnEsplora.setEnabled(vivo);
+    btnAbilità.setEnabled(vivo); 
+    btnInventario.setEnabled(true); 
+    if (!vivo && g.getInventario().getN_revitalizzanti() > 0) {
+        btnRinasci.setEnabled(true);
+        jLabel5.setText("ESAUSTO");
+    } else {
+        btnRinasci.setEnabled(false);
+    }
+
+    if (vivo && p.getTurniInCampo() >= 3 && p.getStadio() < 2) {
         btnEvolvi.setEnabled(true);
         btnEvolvi.setText("EVOLVI!");
     } else {
@@ -69,8 +82,6 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
             btnEvolvi.setText("Evo tra: " + (3 - p.getTurniInCampo()) + " t");
         }
     }
-
-    
     String nomeFile = "immagine_" + p.getNome().toLowerCase() + ".png";
     imgCorrente = new ImageIcon(nomeFile).getImage();
     ridimensionaImmagine();
@@ -161,6 +172,9 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
         btnAbilità = new javax.swing.JButton("Usa abilità");
         btnEvolvi = new javax.swing.JButton("Evolvi Pokémon");
         btnEvolvi.setEnabled(false);
+        
+        btnSalvaCsv = new javax.swing.JButton("Salva (CSV)");
+        btnCaricaCsv = new javax.swing.JButton("Carica (CSV)");
 
         jLabel1 = new javax.swing.JLabel("Fame attuale:");
         jLabel2 = new javax.swing.JLabel("Sete attuale:");
@@ -236,6 +250,7 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
         pnlBottoni.add(btnCura, cb);
         cb.gridx = 1;
         pnlBottoni.add(btnMangia, cb);
+        
         cb.gridx = 0;
         cb.gridy = 1;
         pnlBottoni.add(btnBevi, cb);
@@ -255,6 +270,15 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
 
         cb.gridy = 5;
         pnlBottoni.add(btnEvolvi, cb);
+
+        // --- RIGA SALVATAGGIO/CARICAMENTO CSV ---
+        cb.gridy = 6;
+        cb.gridwidth = 1; // Reset a 1 per avere due bottoni affiancati
+        cb.gridx = 0;
+        pnlBottoni.add(btnSalvaCsv, cb);
+        
+        cb.gridx = 1;
+        pnlBottoni.add(btnCaricaCsv, cb);
 
         c.gridx = 1;
         c.gridy = 0;
@@ -296,6 +320,8 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
         btnAbilità.addActionListener(this::btnAbilitàActionPerformed);
         btnInventario.addActionListener(this::btnInventarioActionPerformed);
         btnEvolvi.addActionListener(this::btnEvolviActionPerformed);
+        btnSalvaCsv.addActionListener(this::btnSalvaCsvActionPerformed);
+        btnCaricaCsv.addActionListener(this::btnCaricaCsvActionPerformed);
 
         pack();
     }
@@ -352,6 +378,8 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         btnEvolvi = new javax.swing.JButton();
+        btnCaricaCsv = new javax.swing.JButton();
+        btnSalvaCsv = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -467,6 +495,24 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
         getContentPane().add(btnEvolvi);
         btnEvolvi.setBounds(140, 340, 130, 23);
 
+        btnCaricaCsv.setText("Carica (CSV)");
+        btnCaricaCsv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCaricaCsvActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnCaricaCsv);
+        btnCaricaCsv.setBounds(160, 120, 95, 23);
+
+        btnSalvaCsv.setText("Salva (CSV)");
+        btnSalvaCsv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvaCsvActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnSalvaCsv);
+        btnSalvaCsv.setBounds(260, 120, 120, 23);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -491,13 +537,13 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
             jLabel5.setText("" + g.getPokemon().getVita());
 
             txtLog.append("> Il tuo Pokémon è rinato! \n");
+            aggiornaGrafica();
             btnMangia.setEnabled(true);
             btnBevi.setEnabled(true);
             btnCura.setEnabled(true);
             btnEsplora.setEnabled(true);
             btnInventario.setEnabled(true);
             btnAbilità.setEnabled(true);
-
             btnRinasci.setEnabled(false);
         } else {
             txtLog.append("> Errore: Non hai Revitalizzanti o il Pokémon è già vivo!\n");
@@ -537,7 +583,7 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
             msg = "Hai trovato una Pozione curativa!";
             impostaImmagineEvento("immagine_pozione.png");
         } else if (oggetto.equals("revitalizzante")) {
-            msg = "Incredibile! Hai trovato un Revitalizzante!";
+            msg = "Incredibile! Hai trovato una Pepita!";
             impostaImmagineEvento("immagine_revitalizzante.png");
         }
         } else if (e == Evento.TEAM_ROCKET) {
@@ -581,15 +627,16 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
             btnCura.setEnabled(false);
             btnEsplora.setEnabled(false);
             btnAbilità.setEnabled(false);
+            btnEvolvi.setEnabled(false);
 
             jLabel5.setText("POKEMON ESAUSTO");
             txtLog.append("> ATTENZIONE: " + g.getPokemon().getClass().getSimpleName() + " è esausto!\n");
 
             if (g.getInventario().getN_revitalizzanti() > 0) {
                 btnRinasci.setEnabled(true);
-                txtLog.append("> Usa un Revitalizzante per continuare.\n");
+                txtLog.append("> Usa una Pepita per continuare.\n");
             } else {
-                txtLog.append("> Non hai Revitalizzanti! Game Over.\n");
+                txtLog.append("> Non hai Pepite! Game Over.\n");
             }
         }
         aggiornaGrafica();
@@ -635,6 +682,34 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
     aggiornaGrafica();
     }//GEN-LAST:event_btnEvolviActionPerformed
 
+    private void btnCaricaCsvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCaricaCsvActionPerformed
+        // TODO add your handling code here:
+        try {
+            Gestore caricato = FileManager.caricaCSV();
+            if (caricato != null) {
+                this.g = caricato;
+                aggiornaGrafica(); 
+                jLabel9.setIcon(null);
+                txtLog.setText("");
+                txtLog.append("> Partita caricata con successo!\n");
+            } else {
+                txtLog.append("> Nessun salvataggio trovato o file corrotto.\n");
+            }
+        } catch (Exception e) {
+            txtLog.append("> Errore nel caricamento: " + e.getMessage() + "\n");
+        }
+    }//GEN-LAST:event_btnCaricaCsvActionPerformed
+
+    private void btnSalvaCsvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvaCsvActionPerformed
+        // TODO add your handling code here:
+        try {
+            FileManager.salvaCSV(g); // Chiama il metodo statico del tuo FileManager
+            txtLog.append("> Partita salvata correttamente in CSV.\n");
+        } catch (Exception e) {
+            txtLog.append("> Errore durante il salvataggio CSV: " + e.getMessage() + "\n");
+        }
+    }//GEN-LAST:event_btnSalvaCsvActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -663,12 +738,14 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbilità;
     private javax.swing.JButton btnBevi;
+    private javax.swing.JButton btnCaricaCsv;
     private javax.swing.JButton btnCura;
     private javax.swing.JButton btnEsplora;
     private javax.swing.JButton btnEvolvi;
     private javax.swing.JButton btnInventario;
     private javax.swing.JButton btnMangia;
     private javax.swing.JButton btnRinasci;
+    private javax.swing.JButton btnSalvaCsv;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
