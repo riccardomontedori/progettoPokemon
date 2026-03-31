@@ -163,168 +163,142 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
     }
 
     private void initComponentsCustom() {
-        btnBevi = new javax.swing.JButton("Bevi");
-        btnMangia = new javax.swing.JButton("Mangia");
-        btnCura = new javax.swing.JButton("Cura");
-        btnRinasci = new javax.swing.JButton("Rinasci");
-        btnEsplora = new javax.swing.JButton("Esplora");
-        btnInventario = new javax.swing.JButton("Apri Inventario");
-        btnAbilità = new javax.swing.JButton("Usa abilità");
-        btnEvolvi = new javax.swing.JButton("Evolvi Pokémon");
-        btnEvolvi.setEnabled(false);
-        
-        btnSalvaCsv = new javax.swing.JButton("Salva (CSV)");
-        btnCaricaCsv = new javax.swing.JButton("Carica (CSV)");
+    btnBevi = new javax.swing.JButton("Bevi");
+    btnMangia = new javax.swing.JButton("Mangia");
+    btnCura = new javax.swing.JButton("Cura");
+    btnRinasci = new javax.swing.JButton("Rinasci");
+    btnEsplora = new javax.swing.JButton("Esplora");
+    btnInventario = new javax.swing.JButton("Apri Inventario");
+    btnAbilità = new javax.swing.JButton("Usa abilità");
+    btnEvolvi = new javax.swing.JButton("Evolvi Pokémon");
+    btnEvolvi.setEnabled(false);
+    
+    btnSalvaCsv = new javax.swing.JButton("Salva (CSV)");
+    btnCaricaCsv = new javax.swing.JButton("Carica (CSV)");
+    btnSalvaBinario = new javax.swing.JButton("Salva (BIN)");
+    btnCaricaBinario = new javax.swing.JButton("Carica (BIN)");
 
-        jLabel1 = new javax.swing.JLabel("Fame attuale:");
-        jLabel2 = new javax.swing.JLabel("Sete attuale:");
-        jLabel3 = new javax.swing.JLabel("0");
-        jLabel4 = new javax.swing.JLabel("Vita attuale:");
-        jLabel5 = new javax.swing.JLabel("" + g.getPokemon().getVita());
-        jLabel6 = new javax.swing.JLabel("0");
+    jLabel1 = new javax.swing.JLabel("Fame attuale:");
+    jLabel2 = new javax.swing.JLabel("Sete attuale:");
+    jLabel3 = new javax.swing.JLabel("0");
+    jLabel4 = new javax.swing.JLabel("Vita attuale:");
+    jLabel5 = new javax.swing.JLabel("" + g.getPokemon().getVita());
+    jLabel6 = new javax.swing.JLabel("0");
 
-        jLabel7 = new javax.swing.JLabel();
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setPreferredSize(new java.awt.Dimension(200, 200));
+    jLabel7 = new javax.swing.JLabel();
+    jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    jLabel7.setPreferredSize(new java.awt.Dimension(200, 200));
 
-        jLabel8 = new javax.swing.JLabel();
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    jLabel8 = new javax.swing.JLabel();
+    jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        txtLog = new javax.swing.JTextArea();
-        txtLog.setEditable(false);
-        txtLog.setColumns(20);
-        txtLog.setLineWrap(true);
-        jScrollPane1 = new javax.swing.JScrollPane(txtLog);
-        jScrollPane1.setPreferredSize(new java.awt.Dimension(10, 10));
-        jScrollPane1.setMinimumSize(new java.awt.Dimension(10, 10));
+    txtLog = new javax.swing.JTextArea();
+    txtLog.setEditable(false);
+    txtLog.setColumns(20);
+    txtLog.setLineWrap(true);
+    jScrollPane1 = new javax.swing.JScrollPane(txtLog);
+    jScrollPane1.setPreferredSize(new java.awt.Dimension(10, 10));
+    jScrollPane1.setMinimumSize(new java.awt.Dimension(10, 10));
 
-        jLabel9 = new javax.swing.JLabel();
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setPreferredSize(new java.awt.Dimension(10, 10));
-        jLabel9.setMinimumSize(new java.awt.Dimension(10, 10));
+    jLabel9 = new javax.swing.JLabel();
+    jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    jLabel9.setPreferredSize(new java.awt.Dimension(10, 10));
+    jLabel9.setMinimumSize(new java.awt.Dimension(10, 10));
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+    setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.JLayeredPane layeredPane = new javax.swing.JLayeredPane();
-        getContentPane().setLayout(new java.awt.BorderLayout());
-        getContentPane().add(layeredPane, java.awt.BorderLayout.CENTER);
+    javax.swing.JLayeredPane layeredPane = new javax.swing.JLayeredPane();
+    getContentPane().setLayout(new java.awt.BorderLayout());
+    getContentPane().add(layeredPane, java.awt.BorderLayout.CENTER);
 
-        javax.swing.JPanel contentPanel = new javax.swing.JPanel(new java.awt.GridBagLayout());
-        contentPanel.setOpaque(false);
+    javax.swing.JPanel contentPanel = new javax.swing.JPanel(new java.awt.GridBagLayout());
+    contentPanel.setOpaque(false);
 
-        java.awt.GridBagConstraints c = new java.awt.GridBagConstraints();
-        c.insets = new java.awt.Insets(10, 10, 10, 10);
-        c.fill = java.awt.GridBagConstraints.BOTH;
+    java.awt.GridBagConstraints c = new java.awt.GridBagConstraints();
+    c.insets = new java.awt.Insets(10, 10, 10, 10);
+    c.fill = java.awt.GridBagConstraints.BOTH;
 
-        javax.swing.JPanel pnlStats = new javax.swing.JPanel(new java.awt.GridLayout(3, 2, 5, 5));
-        pnlStats.setOpaque(false);
-        pnlStats.setPreferredSize(new java.awt.Dimension(10, 10));
-        pnlStats.add(jLabel4);
-        pnlStats.add(jLabel5);
-        pnlStats.add(jLabel2);
-        pnlStats.add(jLabel6);
-        pnlStats.add(jLabel1);
-        pnlStats.add(jLabel3);
+    javax.swing.JPanel pnlStats = new javax.swing.JPanel(new java.awt.GridLayout(3, 2, 5, 5));
+    pnlStats.setOpaque(false);
+    pnlStats.setPreferredSize(new java.awt.Dimension(10, 10));
+    pnlStats.add(jLabel4); pnlStats.add(jLabel5);
+    pnlStats.add(jLabel2); pnlStats.add(jLabel6);
+    pnlStats.add(jLabel1); pnlStats.add(jLabel3);
 
-        c.gridx = 0;
-        c.gridy = 0;
-        c.weightx = 0.3;
-        c.weighty = 0.2;
-        contentPanel.add(pnlStats, c);
+    c.gridx = 0; c.gridy = 0;
+    c.weightx = 0.3; c.weighty = 0.2;
+    contentPanel.add(pnlStats, c);
 
-        c.gridx = 0;
-        c.gridy = 1;
-        c.weighty = 0.8;
-        contentPanel.add(jLabel7, c);
+    c.gridx = 0; c.gridy = 1;
+    c.weighty = 0.8;
+    contentPanel.add(jLabel7, c);
 
-        javax.swing.JPanel pnlBottoni = new javax.swing.JPanel(new java.awt.GridBagLayout());
-        pnlBottoni.setOpaque(false);
-        pnlBottoni.setPreferredSize(new java.awt.Dimension(10, 10));
-        java.awt.GridBagConstraints cb = new java.awt.GridBagConstraints();
-        cb.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        cb.insets = new java.awt.Insets(5, 5, 5, 5);
-        cb.weightx = 1.0;
+    javax.swing.JPanel pnlBottoni = new javax.swing.JPanel(new java.awt.GridBagLayout());
+    pnlBottoni.setOpaque(false);
+    pnlBottoni.setPreferredSize(new java.awt.Dimension(10, 10));
+    java.awt.GridBagConstraints cb = new java.awt.GridBagConstraints();
+    cb.fill = java.awt.GridBagConstraints.HORIZONTAL;
+    cb.insets = new java.awt.Insets(5, 5, 5, 5);
+    cb.weightx = 1.0;
 
-        cb.gridx = 0;
-        cb.gridy = 0;
-        pnlBottoni.add(btnCura, cb);
-        cb.gridx = 1;
-        pnlBottoni.add(btnMangia, cb);
-        
-        cb.gridx = 0;
-        cb.gridy = 1;
-        pnlBottoni.add(btnBevi, cb);
-        cb.gridx = 1;
-        pnlBottoni.add(btnRinasci, cb);
-        
-        cb.gridx = 0;
-        cb.gridy = 2;
-        cb.gridwidth = 2;
-        pnlBottoni.add(btnAbilità, cb);
-        
-        cb.gridy = 3;
-        pnlBottoni.add(btnEsplora, cb);
-        
-        cb.gridy = 4;
-        pnlBottoni.add(btnInventario, cb);
+    cb.gridx = 0; cb.gridy = 0; pnlBottoni.add(btnCura, cb);
+    cb.gridx = 1; cb.gridy = 0; pnlBottoni.add(btnMangia, cb);
+    cb.gridx = 0; cb.gridy = 1; pnlBottoni.add(btnBevi, cb);
+    cb.gridx = 1; cb.gridy = 1; pnlBottoni.add(btnRinasci, cb);
+    
+    cb.gridx = 0; cb.gridy = 2; cb.gridwidth = 2;
+    pnlBottoni.add(btnAbilità, cb);
+    cb.gridy = 3; pnlBottoni.add(btnEsplora, cb);
+    cb.gridy = 4; pnlBottoni.add(btnInventario, cb);
+    cb.gridy = 5; pnlBottoni.add(btnEvolvi, cb);
 
-        cb.gridy = 5;
-        pnlBottoni.add(btnEvolvi, cb);
+    cb.gridwidth = 1;
+    cb.gridy = 6; cb.gridx = 0; pnlBottoni.add(btnSalvaCsv, cb);
+    cb.gridx = 1; pnlBottoni.add(btnCaricaCsv, cb);
+    
+    cb.gridy = 7; cb.gridx = 0; pnlBottoni.add(btnSalvaBinario, cb);
+    cb.gridx = 1; pnlBottoni.add(btnCaricaBinario, cb);
 
-        // --- RIGA SALVATAGGIO/CARICAMENTO CSV ---
-        cb.gridy = 6;
-        cb.gridwidth = 1; // Reset a 1 per avere due bottoni affiancati
-        cb.gridx = 0;
-        pnlBottoni.add(btnSalvaCsv, cb);
-        
-        cb.gridx = 1;
-        pnlBottoni.add(btnCaricaCsv, cb);
+    c.gridx = 1; c.gridy = 0;
+    c.gridheight = 2; c.weightx = 0.3; c.weighty = 1.0;
+    contentPanel.add(pnlBottoni, c);
 
-        c.gridx = 1;
-        c.gridy = 0;
-        c.gridheight = 2;
-        c.weightx = 0.3;
-        c.weighty = 1.0;
-        contentPanel.add(pnlBottoni, c);
+    c.gridx = 2; c.gridy = 0;
+    c.gridheight = 1; c.weightx = 0.4; c.weighty = 0.5;
+    contentPanel.add(jScrollPane1, c);
 
-        c.gridx = 2;
-        c.gridy = 0;
-        c.gridheight = 1;
-        c.weightx = 0.4;
-        c.weighty = 0.5;
-        contentPanel.add(jScrollPane1, c);
+    c.gridx = 2; c.gridy = 1;
+    c.weighty = 0.5;
+    contentPanel.add(jLabel9, c);
 
-        c.gridx = 2;
-        c.gridy = 1;
-        c.weighty = 0.5;
-        contentPanel.add(jLabel9, c);
+    layeredPane.add(jLabel8, javax.swing.JLayeredPane.DEFAULT_LAYER);
+    layeredPane.add(contentPanel, javax.swing.JLayeredPane.PALETTE_LAYER);
 
-        layeredPane.add(jLabel8, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        layeredPane.add(contentPanel, javax.swing.JLayeredPane.PALETTE_LAYER);
+    this.addComponentListener(new java.awt.event.ComponentAdapter() {
+        @Override
+        public void componentResized(java.awt.event.ComponentEvent e) {
+            jLabel8.setBounds(0, 0, layeredPane.getWidth(), layeredPane.getHeight());
+            contentPanel.setBounds(0, 0, layeredPane.getWidth(), layeredPane.getHeight());
+            ridimensionaSfondo();
+            ridimensionaImmagine();
+        }
+    });
 
-        this.addComponentListener(new java.awt.event.ComponentAdapter() {
-            @Override
-            public void componentResized(java.awt.event.ComponentEvent e) {
-                jLabel8.setBounds(0, 0, layeredPane.getWidth(), layeredPane.getHeight());
-                contentPanel.setBounds(0, 0, layeredPane.getWidth(), layeredPane.getHeight());
-                ridimensionaSfondo();
-                ridimensionaImmagine();
-            }
-        });
+    btnMangia.addActionListener(this::btnMangiaActionPerformed);
+    btnBevi.addActionListener(this::btnBeviActionPerformed);
+    btnCura.addActionListener(this::btnCuraActionPerformed);
+    btnEsplora.addActionListener(this::btnEsploraActionPerformed);
+    btnRinasci.addActionListener(this::btnRinasciActionPerformed);
+    btnAbilità.addActionListener(this::btnAbilitàActionPerformed);
+    btnInventario.addActionListener(this::btnInventarioActionPerformed);
+    btnEvolvi.addActionListener(this::btnEvolviActionPerformed);
+    btnSalvaCsv.addActionListener(this::btnSalvaCsvActionPerformed);
+    btnCaricaCsv.addActionListener(this::btnCaricaCsvActionPerformed);
+    btnSalvaBinario.addActionListener(this::btnSalvaBinarioActionPerformed);
+    btnCaricaBinario.addActionListener(this::btnCaricaBinarioActionPerformed);
 
-        btnMangia.addActionListener(this::btnMangiaActionPerformed);
-        btnBevi.addActionListener(this::btnBeviActionPerformed);
-        btnCura.addActionListener(this::btnCuraActionPerformed);
-        btnEsplora.addActionListener(this::btnEsploraActionPerformed);
-        btnRinasci.addActionListener(this::btnRinasciActionPerformed);
-        btnAbilità.addActionListener(this::btnAbilitàActionPerformed);
-        btnInventario.addActionListener(this::btnInventarioActionPerformed);
-        btnEvolvi.addActionListener(this::btnEvolviActionPerformed);
-        btnSalvaCsv.addActionListener(this::btnSalvaCsvActionPerformed);
-        btnCaricaCsv.addActionListener(this::btnCaricaCsvActionPerformed);
-
-        pack();
-    }
+    pack();
+}
 
     public void inserimentoPokemon() {
         Image imgSelezionata;
@@ -380,6 +354,8 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
         btnEvolvi = new javax.swing.JButton();
         btnCaricaCsv = new javax.swing.JButton();
         btnSalvaCsv = new javax.swing.JButton();
+        btnSalvaBinario = new javax.swing.JButton();
+        btnCaricaBinario = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -512,6 +488,24 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
         });
         getContentPane().add(btnSalvaCsv);
         btnSalvaCsv.setBounds(260, 120, 120, 23);
+
+        btnSalvaBinario.setText("Salva (BIN)");
+        btnSalvaBinario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvaBinarioActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnSalvaBinario);
+        btnSalvaBinario.setBounds(40, 100, 110, 23);
+
+        btnCaricaBinario.setText("Carica (BIN)");
+        btnCaricaBinario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCaricaBinarioActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnCaricaBinario);
+        btnCaricaBinario.setBounds(40, 130, 100, 23);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -710,6 +704,34 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSalvaCsvActionPerformed
 
+    private void btnSalvaBinarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvaBinarioActionPerformed
+        // TODO add your handling code here:
+        try {
+        FileManager.salvaBinario(g);
+        txtLog.append("> Partita salvata correttamente in formato BINARIO.\n");
+    } catch (Exception e) {
+        txtLog.append("> Errore durante il salvataggio BIN: " + e.getMessage() + "\n");
+    }
+    }//GEN-LAST:event_btnSalvaBinarioActionPerformed
+
+    private void btnCaricaBinarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCaricaBinarioActionPerformed
+        // TODO add your handling code here:
+        try {
+        Gestore caricato = FileManager.caricaBinario();
+        if (caricato != null) {
+            this.g = caricato;
+            aggiornaGrafica();
+            jLabel9.setIcon(null); // Pulisce l'immagine dell'ultimo evento
+            txtLog.setText("");
+            txtLog.append("> Partita caricata con successo dal file BINARIO!\n");
+        } else {
+            txtLog.append("> Nessun salvataggio binario trovato.\n");
+        }
+    } catch (Exception e) {
+        txtLog.append("> Errore nel caricamento BIN: " + e.getMessage() + "\n");
+    }
+    }//GEN-LAST:event_btnCaricaBinarioActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -738,6 +760,7 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbilità;
     private javax.swing.JButton btnBevi;
+    private javax.swing.JButton btnCaricaBinario;
     private javax.swing.JButton btnCaricaCsv;
     private javax.swing.JButton btnCura;
     private javax.swing.JButton btnEsplora;
@@ -745,6 +768,7 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
     private javax.swing.JButton btnInventario;
     private javax.swing.JButton btnMangia;
     private javax.swing.JButton btnRinasci;
+    private javax.swing.JButton btnSalvaBinario;
     private javax.swing.JButton btnSalvaCsv;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
