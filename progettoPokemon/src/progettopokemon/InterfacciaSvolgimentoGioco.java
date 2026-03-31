@@ -624,7 +624,7 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
             btnEvolvi.setEnabled(false);
 
             jLabel5.setText("POKEMON ESAUSTO");
-            txtLog.append("> ATTENZIONE: " + g.getPokemon().getClass().getSimpleName() + " è esausto!\n");
+            txtLog.append("> ATTENZIONE: " + g.getPokemon().getNome() + " è esausto!\n");
 
             if (g.getInventario().getN_revitalizzanti() > 0) {
                 btnRinasci.setEnabled(true);
