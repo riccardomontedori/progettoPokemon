@@ -590,7 +590,7 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
             int scelta = (int) (Math.random() * 3) + 1;
 
             if (scelta == 1) {
-                g.getInventario().setN_bacche(g.getInventario().getN_bacche() - 1);
+                g.getPokemon().setVita(g.getPokemon().getVita() + 2);
                 msg = "Un Bidoof selvatico ti taglia la strada! Ti ruba una bacca e per farlo di reca del danno";
                 impostaImmagineEvento("immagine_pokemon_selvatico2.png");
             } else if (scelta == 2) {
