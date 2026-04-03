@@ -170,109 +170,103 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
     btnEsplora = new javax.swing.JButton("Esplora");
     btnInventario = new javax.swing.JButton("Apri Inventario");
     btnAbilità = new javax.swing.JButton("Usa abilità");
-    btnEvolvi = new javax.swing.JButton("Evolvi Pokémon");
+    btnEvolvi = new javax.swing.JButton("EVOLVI");
     btnEvolvi.setEnabled(false);
-    
     btnSalvaCsv = new javax.swing.JButton("Salva (CSV)");
     btnCaricaCsv = new javax.swing.JButton("Carica (CSV)");
     btnSalvaBinario = new javax.swing.JButton("Salva (BIN)");
     btnCaricaBinario = new javax.swing.JButton("Carica (BIN)");
 
-    jLabel1 = new javax.swing.JLabel("Fame attuale:");
-    jLabel2 = new javax.swing.JLabel("Sete attuale:");
-    jLabel3 = new javax.swing.JLabel("0");
-    jLabel4 = new javax.swing.JLabel("Vita attuale:");
-    jLabel5 = new javax.swing.JLabel("" + g.getPokemon().getVita());
-    jLabel6 = new javax.swing.JLabel("0");
+    java.awt.Font fontStats = new java.awt.Font("Tahoma", java.awt.Font.BOLD, 14);
+    jLabel4 = new javax.swing.JLabel("VITA:"); jLabel4.setFont(fontStats);
+    jLabel5 = new javax.swing.JLabel("" + g.getPokemon().getVita()); jLabel5.setFont(fontStats);
+    jLabel2 = new javax.swing.JLabel("SETE:"); jLabel2.setFont(fontStats);
+    jLabel6 = new javax.swing.JLabel("0"); jLabel6.setFont(fontStats);
+    jLabel1 = new javax.swing.JLabel("FAME:"); jLabel1.setFont(fontStats);
+    jLabel3 = new javax.swing.JLabel("0"); jLabel3.setFont(fontStats);
 
-    jLabel7 = new javax.swing.JLabel();
+    javax.swing.JPanel pnlStats = new javax.swing.JPanel(new java.awt.GridLayout(3, 2, 10, 5));
+    pnlStats.setOpaque(true); 
+    pnlStats.setBackground(java.awt.Color.WHITE);
+    pnlStats.setBorder(javax.swing.BorderFactory.createCompoundBorder(
+        javax.swing.BorderFactory.createLineBorder(java.awt.Color.BLACK, 2),
+        javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5)
+    ));
+    pnlStats.add(jLabel4); pnlStats.add(jLabel5);
+    pnlStats.add(jLabel2); pnlStats.add(jLabel6);
+    pnlStats.add(jLabel1); pnlStats.add(jLabel3);
+
+    jLabel7 = new javax.swing.JLabel(); 
     jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-    jLabel7.setPreferredSize(new java.awt.Dimension(200, 200));
+    jLabel8 = new javax.swing.JLabel(); 
+    jLabel9 = new javax.swing.JLabel(); 
+    jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-    jLabel8 = new javax.swing.JLabel();
-    jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    jLabel10 = new javax.swing.JLabel(); 
+    java.awt.Image img = new javax.swing.ImageIcon("immagine_titolo.png").getImage();
+    java.awt.Image newimg = img.getScaledInstance(500, 150, java.awt.Image.SCALE_SMOOTH);
+    jLabel10.setIcon(new javax.swing.ImageIcon(newimg));
 
     txtLog = new javax.swing.JTextArea();
     txtLog.setEditable(false);
-    txtLog.setColumns(20);
     txtLog.setLineWrap(true);
+    txtLog.setWrapStyleWord(true);
     jScrollPane1 = new javax.swing.JScrollPane(txtLog);
-    jScrollPane1.setPreferredSize(new java.awt.Dimension(10, 10));
-    jScrollPane1.setMinimumSize(new java.awt.Dimension(10, 10));
-
-    jLabel9 = new javax.swing.JLabel();
-    jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-    jLabel9.setPreferredSize(new java.awt.Dimension(10, 10));
-    jLabel9.setMinimumSize(new java.awt.Dimension(10, 10));
+    java.awt.Dimension logDim = new java.awt.Dimension(450, 150);
+    jScrollPane1.setPreferredSize(logDim);
+    jScrollPane1.setMinimumSize(logDim);
+    jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.BLACK, 2));
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
     javax.swing.JLayeredPane layeredPane = new javax.swing.JLayeredPane();
     getContentPane().setLayout(new java.awt.BorderLayout());
     getContentPane().add(layeredPane, java.awt.BorderLayout.CENTER);
 
     javax.swing.JPanel contentPanel = new javax.swing.JPanel(new java.awt.GridBagLayout());
     contentPanel.setOpaque(false);
-
     java.awt.GridBagConstraints c = new java.awt.GridBagConstraints();
     c.insets = new java.awt.Insets(10, 10, 10, 10);
-    c.fill = java.awt.GridBagConstraints.BOTH;
 
-    javax.swing.JPanel pnlStats = new javax.swing.JPanel(new java.awt.GridLayout(3, 2, 5, 5));
-    pnlStats.setOpaque(false);
-    pnlStats.setPreferredSize(new java.awt.Dimension(10, 10));
-    pnlStats.add(jLabel4); pnlStats.add(jLabel5);
-    pnlStats.add(jLabel2); pnlStats.add(jLabel6);
-    pnlStats.add(jLabel1); pnlStats.add(jLabel3);
+    c.gridx = 0; c.gridy = 0; c.gridwidth = 3;
+    c.anchor = java.awt.GridBagConstraints.NORTH;
+    c.weighty = 0.0;
+    contentPanel.add(jLabel10, c);
 
-    c.gridx = 0; c.gridy = 0;
-    c.weightx = 0.3; c.weighty = 0.2;
+    c.gridx = 0; c.gridy = 1; c.gridwidth = 1;
+    c.anchor = java.awt.GridBagConstraints.NORTHWEST;
+    c.fill = java.awt.GridBagConstraints.NONE;
+    c.weightx = 0.0;
+    c.weighty = 0.0;
     contentPanel.add(pnlStats, c);
 
-    c.gridx = 0; c.gridy = 1;
-    c.weighty = 0.8;
+    c.gridx = 0; c.gridy = 2; c.gridwidth = 1;
+    c.fill = java.awt.GridBagConstraints.BOTH;
+    c.weightx = 0.5; c.weighty = 1.0; 
     contentPanel.add(jLabel7, c);
 
-    javax.swing.JPanel pnlBottoni = new javax.swing.JPanel(new java.awt.GridBagLayout());
-    pnlBottoni.setOpaque(false);
-    pnlBottoni.setPreferredSize(new java.awt.Dimension(10, 10));
-    java.awt.GridBagConstraints cb = new java.awt.GridBagConstraints();
-    cb.fill = java.awt.GridBagConstraints.HORIZONTAL;
-    cb.insets = new java.awt.Insets(5, 5, 5, 5);
-    cb.weightx = 1.0;
-
-    cb.gridx = 0; cb.gridy = 0; pnlBottoni.add(btnCura, cb);
-    cb.gridx = 1; cb.gridy = 0; pnlBottoni.add(btnMangia, cb);
-    cb.gridx = 0; cb.gridy = 1; pnlBottoni.add(btnBevi, cb);
-    cb.gridx = 1; cb.gridy = 1; pnlBottoni.add(btnRinasci, cb);
-    
-    cb.gridx = 0; cb.gridy = 2; cb.gridwidth = 2;
-    pnlBottoni.add(btnAbilità, cb);
-    cb.gridy = 3; pnlBottoni.add(btnEsplora, cb);
-    cb.gridy = 4; pnlBottoni.add(btnInventario, cb);
-    cb.gridy = 5; pnlBottoni.add(btnEvolvi, cb);
-
-    cb.gridwidth = 1;
-    cb.gridy = 6; cb.gridx = 0; pnlBottoni.add(btnSalvaCsv, cb);
-    cb.gridx = 1; pnlBottoni.add(btnCaricaCsv, cb);
-    
-    cb.gridy = 7; cb.gridx = 0; pnlBottoni.add(btnSalvaBinario, cb);
-    cb.gridx = 1; pnlBottoni.add(btnCaricaBinario, cb);
-
-    c.gridx = 1; c.gridy = 0;
-    c.gridheight = 2; c.weightx = 0.3; c.weighty = 1.0;
-    contentPanel.add(pnlBottoni, c);
-
-    c.gridx = 2; c.gridy = 0;
-    c.gridheight = 1; c.weightx = 0.4; c.weighty = 0.5;
-    contentPanel.add(jScrollPane1, c);
-
-    c.gridx = 2; c.gridy = 1;
-    c.weighty = 0.5;
+    c.gridx = 2; c.gridy = 2;
     contentPanel.add(jLabel9, c);
 
-    layeredPane.add(jLabel8, javax.swing.JLayeredPane.DEFAULT_LAYER);
-    layeredPane.add(contentPanel, javax.swing.JLayeredPane.PALETTE_LAYER);
+    c.gridx = 0; c.gridy = 3; c.gridwidth = 2;
+    c.weightx = 0.7; c.weighty = 0.0;
+    c.fill = java.awt.GridBagConstraints.BOTH;
+    contentPanel.add(jScrollPane1, c);
+
+    javax.swing.JPanel pnlBottoni = new javax.swing.JPanel(new java.awt.GridLayout(4, 3, 2, 2));
+    pnlBottoni.setOpaque(false);
+    pnlBottoni.add(btnCura); pnlBottoni.add(btnMangia); pnlBottoni.add(btnBevi);
+    pnlBottoni.add(btnAbilità); pnlBottoni.add(btnEsplora); pnlBottoni.add(btnInventario);
+    pnlBottoni.add(btnEvolvi); pnlBottoni.add(btnRinasci); pnlBottoni.add(btnCaricaCsv);
+    pnlBottoni.add(btnSalvaCsv); pnlBottoni.add(btnSalvaBinario); pnlBottoni.add(btnCaricaBinario);
+    
+    c.gridx = 2; c.gridy = 3; c.gridwidth = 1;
+    c.weightx = 0.3;
+    contentPanel.add(pnlBottoni, c);
+
+    layeredPane.setLayer(jLabel8, javax.swing.JLayeredPane.DEFAULT_LAYER);
+    layeredPane.setLayer(contentPanel, javax.swing.JLayeredPane.PALETTE_LAYER);
+    layeredPane.add(jLabel8);
+    layeredPane.add(contentPanel);
 
     this.addComponentListener(new java.awt.event.ComponentAdapter() {
         @Override
@@ -281,6 +275,8 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
             contentPanel.setBounds(0, 0, layeredPane.getWidth(), layeredPane.getHeight());
             ridimensionaSfondo();
             ridimensionaImmagine();
+            layeredPane.revalidate();
+            layeredPane.repaint();
         }
     });
 
@@ -356,6 +352,7 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
         btnSalvaCsv = new javax.swing.JButton();
         btnSalvaBinario = new javax.swing.JButton();
         btnCaricaBinario = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -507,6 +504,10 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
         getContentPane().add(btnCaricaBinario);
         btnCaricaBinario.setBounds(40, 130, 100, 23);
 
+        jLabel10.setText("jLabel10");
+        getContentPane().add(jLabel10);
+        jLabel10.setBounds(190, 80, 45, 16);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -590,8 +591,7 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
             int scelta = (int) (Math.random() * 3) + 1;
 
             if (scelta == 1) {
-                g.getPokemon().setVita(g.getPokemon().getVita() + 2);
-                msg = "Un Bidoof selvatico ti taglia la strada! Ti ruba una bacca e per farlo di reca del danno";
+                msg = "Un Bidoof selvatico ti taglia la strada! Infastidito ti reca del danno";
                 impostaImmagineEvento("immagine_pokemon_selvatico2.png");
             } else if (scelta == 2) {
                 msg = "Dalla foresta sbuca un mightyena, ha i suoi cuccioli li accanto e per difenderli è pronto ad attaccare, lo scontro fa aumentare la tua sete e fame oltre a i danni";
@@ -756,7 +756,8 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new InterfacciaSvolgimentoGioco(null).setVisible(true));
     }
-
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbilità;
     private javax.swing.JButton btnBevi;
@@ -771,6 +772,7 @@ public class InterfacciaSvolgimentoGioco extends javax.swing.JFrame {
     private javax.swing.JButton btnSalvaBinario;
     private javax.swing.JButton btnSalvaCsv;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
