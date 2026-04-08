@@ -44,17 +44,13 @@ public class FileManager{
         }
     }
 
-    // --- SEZIONE CSV (TESTO) ---
-
     public static void salvaCSV(Gestore g) {
         try (PrintWriter writer = new PrintWriter(new FileWriter(FILE_CSV))) {
             Pokemon p = g.getPokemon();
             Inventario inv = g.getInventario();
 
-            // Intestazione (opzionale, utile per leggibilità)
             writer.println("Classe,Nome,Stadio,Vita,Fame,Sete,TurniEvo,Bacche,Acqua,Pozioni,Revitalizzanti");
 
-            // Riga dei dati separati da virgola
             writer.print(p.getClass().getSimpleName() + ",");
             writer.print(p.getNome() + ",");
             writer.print(p.getStadio() + ",");
@@ -75,20 +71,18 @@ public class FileManager{
 
     public static Gestore caricaCSV() {
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_CSV))) {
-            reader.readLine(); // Salta l'intestazione
+            reader.readLine();
             String linea = reader.readLine();
             if (linea == null) return null;
 
             String[] dati = linea.split(",");
 
-            // Ricostruzione Pokemon in base alla classe
             String tipo = dati[0];
             Pokemon p;
             if (tipo.equals("Rowlet")) p = new Rowlet();
             else if (tipo.equals("Froakie")) p = new Froakie();
             else p = new Chimchar();
 
-            // Assegnazione valori (Parsing)
             p.setNome(dati[1]);
             p.setStadio(Integer.parseInt(dati[2]));
             p.setVita(Integer.parseInt(dati[3]));

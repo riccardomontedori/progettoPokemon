@@ -110,11 +110,11 @@ public class InterfacciaSceltaPokemon extends javax.swing.JFrame {
 
     private void mostraMessaggioStretto(String testo) {
         javax.swing.JTextArea area = new javax.swing.JTextArea(testo);
-        area.setColumns(30);           // Qui decidi la larghezza (30 caratteri)
-        area.setLineWrap(true);        // Attiva l'andata a capo
-        area.setWrapStyleWord(true);   // Non taglia le parole a metà
-        area.setEditable(false);       // Non fa scrivere l'utente
-        area.setBackground(new java.awt.Color(0, 0, 0, 0)); // Sfondo trasparente
+        area.setColumns(30);           
+        area.setLineWrap(true);       
+        area.setWrapStyleWord(true);   
+        area.setEditable(false);       
+        area.setBackground(new java.awt.Color(0, 0, 0, 0)); 
 
         JOptionPane.showMessageDialog(this, area, "Pokedex", JOptionPane.INFORMATION_MESSAGE);
     }

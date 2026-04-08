@@ -27,15 +27,13 @@ public class InterfacciaInventario extends javax.swing.JFrame {
         initComponents();
         btnChiudiInventario.setOpaque(false);
         btnChiudiInventario.setContentAreaFilled(false);
-        btnChiudiInventario.setBorderPainted(true); // Lasciamo il bordo sottile per far capire che è un tasto
+        btnChiudiInventario.setBorderPainted(true); 
         btnChiudiInventario.setFocusPainted(false);
 
-// 2. Imposta lo stesso colore verde delle label (153, 255, 51)
         btnChiudiInventario.setForeground(new java.awt.Color(153, 255, 51));
 
-// 3. (Opzionale) Cambia il font per farlo uguale agli altri
         btnChiudiInventario.setFont(new java.awt.Font("SimSun-ExtB", 1, 14));
-        // Imposta il layout null per gestire manualmente lo sfondo se necessario
+        
         getContentPane().setLayout(null);
 
         this.addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -45,7 +43,7 @@ public class InterfacciaInventario extends javax.swing.JFrame {
                 int h = getContentPane().getHeight();
 
                 if (w > 0 && h > 0) {
-                    // --- GESTIONE SFONDO ---
+                    
                     java.net.URL imgURL = getClass().getResource("immagine_inventario.png");
                     ImageIcon icona = (imgURL != null) ? new ImageIcon(imgURL) : new ImageIcon("immagine_inventario.png");
 
@@ -56,34 +54,32 @@ public class InterfacciaInventario extends javax.swing.JFrame {
                         jLabel6.setBounds(0, 0, w, h);
                     }
 
-                    // --- POSIZIONAMENTO CENTRALE ---
-                    // Calcoliamo un margine sinistro per centrare il blocco delle scritte
-                    int centroX = (w / 2) - 100; // Spostiamo l'inizio del testo verso il centro
-                    int colonnaNumeriX = centroX + 160; // I numeri appariranno a destra del testo
+                   
+                    int centroX = (w / 2) - 100; 
+                    int colonnaNumeriX = centroX + 160; 
 
-                    // Titolo "INVENTARIO" centrato
+                    
                     jLabel5.setBounds((w - 150) / 2, 30, 150, 32);
 
-                    // Righe dell'inventario (Testo e Numero affiancati)
-                    jLabel1.setBounds(centroX, 100, 150, 14);  // Pozioni
+                    
+                    jLabel1.setBounds(centroX, 100, 150, 14); 
                     jLabel12.setBounds(colonnaNumeriX, 100, 50, 14);
 
-                    jLabel2.setBounds(centroX, 130, 150, 14);  // Bacche
+                    jLabel2.setBounds(centroX, 130, 150, 14); 
                     jLabel11.setBounds(colonnaNumeriX, 130, 50, 14);
 
-                    jLabel3.setBounds(centroX, 160, 150, 14);  // Acque
+                    jLabel3.setBounds(centroX, 160, 150, 14); 
                     jLabel9.setBounds(colonnaNumeriX, 160, 50, 14);
 
-                    jLabel4.setBounds(centroX, 190, 220, 20);  // Revitalizzanti
+                    jLabel4.setBounds(centroX, 190, 220, 20);  
                     jLabel10.setBounds(colonnaNumeriX, 190, 50, 20);
 
-                    // Bottone "Chiudi" centrato in basso
-                    int btnW = 200; // Aumentato da 180 a 200
+                    
+                    int btnW = 200; 
                     int btnH = 30;
                     int btnX = (w - btnW) / 2;
-                    int btnY = h - 70; // Alzato leggermente dal bordo inferior
+                    int btnY = h - 70; 
                     btnChiudiInventario.setBounds((w - btnW) / 2, h - 70, btnW, btnH);
-                    // Assicura che lo sfondo resti dietro
                     getContentPane().setComponentZOrder(jLabel6, getContentPane().getComponentCount() - 1);
                 }
             }
